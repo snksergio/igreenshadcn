@@ -1,0 +1,43 @@
+/**
+ * iGreen Theme - Entry Point
+ * 
+ * This file imports all theme modules in the correct order.
+ * 
+ * Structure:
+ * 1. Primitives: Raw color scales, base values
+ * 2. Semantic: Contextual tokens that reference primitives
+ * 3. Bridge: Shadcn/UI variable mappings
+ * 
+ * Import this file in your globals.css before Tailwind.
+ */
+
+/* Primitives - Foundation layer */
+/**
+ * Primitives - Index
+ * 
+ * Entry point for all primitive tokens.
+ * Import order matters for CSS variable resolution.
+ */
+
+@import "./colors.css";
+@import "./typography.css";
+@import "./spacing.css";
+
+
+/* Semantic - Contextual layer */
+/**
+ * Semantic - Index
+ * 
+ * Entry point for all semantic tokens.
+ * Import order matters for CSS variable resolution.
+ */
+
+@import "./colors.css";
+@import "./effects.css";
+@import "./motion.css";
+@import "./sizing.css";
+@import "./typography.css";
+
+
+/* Bridge - Shadcn/UI compatibility */
+@import "./bridge/shadcn.css";

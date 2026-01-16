@@ -1,0 +1,30 @@
+{
+  "name": "@igreen/label",
+  "version": "1.0.0",
+  "description": "iGreen Design System - Label Component",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "@igreen/utils": "file:../../utils",
+    "@radix-ui/react-label": "*"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873"
+  }
+}

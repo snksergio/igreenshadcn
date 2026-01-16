@@ -1,0 +1,22 @@
+{
+    "name": "@igreen/utils",
+    "version": "1.0.0",
+    "description": "iGreen Design System - Shared Utilities",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch"
+    },
+    "peerDependencies": {
+        "clsx": "^2.1.1",
+        "tailwind-merge": "^3.4.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "http://localhost:4873"
+    }
+}

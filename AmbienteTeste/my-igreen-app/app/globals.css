@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "../components/ui/theme-config.css";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Personalizações do projeto */
+}
+
+:root {
+  /* Variáveis locais */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

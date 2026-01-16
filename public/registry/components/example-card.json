@@ -1,0 +1,33 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+    "name": "example-card",
+    "type": "registry:block",
+    "dependencies": [],
+    "registryDependencies": [],
+    "files": [
+        {
+            "path": "components/system/example-card/component.tsx",
+            "content": "import React from 'react';\r\nimport { ExampleCardProps } from './types';\r\nimport { cardStyles } from './styles';\r\nimport { cn } from '@/lib/utils';\r\n\r\nexport const ExampleCard: React.FC<ExampleCardProps> = ({ title, description, variant = 'default' }) => {\r\n    return (\r\n        <div className={cn(cardStyles.container, cardStyles.variants[variant])}>\r\n            <h3 className={cardStyles.title}>{title}</h3>\r\n            <p className={cardStyles.description}>{description}</p>\r\n        </div>\r\n    );\r\n};\r\n",
+            "type": "registry:component",
+            "target": "components/system/example-card/component.tsx"
+        },
+        {
+            "path": "components/system/example-card/index.ts",
+            "content": "export { ExampleCard } from './component';\r\nexport type { ExampleCardProps } from './types';\r\n",
+            "type": "registry:component",
+            "target": "components/system/example-card/index.ts"
+        },
+        {
+            "path": "components/system/example-card/styles.ts",
+            "content": "export const cardStyles = {\r\n    container: \"rounded-xl p-6 transition-all duration-200\",\r\n    variants: {\r\n        default: \"bg-surface shadow-sm\",\r\n        outlined: \"border border-border bg-transparent\"\r\n    },\r\n    title: \"text-lg font-semibold text-fg-primary mb-2\",\r\n    description: \"text-sm text-fg-secondary\"\r\n};\r\n",
+            "type": "registry:component",
+            "target": "components/system/example-card/styles.ts"
+        },
+        {
+            "path": "components/system/example-card/types.ts",
+            "content": "export interface ExampleCardProps {\r\n    title: string;\r\n    description: string;\r\n    variant?: 'default' | 'outlined';\r\n}\r\n",
+            "type": "registry:component",
+            "target": "components/system/example-card/types.ts"
+        }
+    ]
+}

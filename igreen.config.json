@@ -1,0 +1,12 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "registry": {
+        "dev": "http://localhost:3000",
+        "prod": "https://registry.igreen.design"
+    },
+    "defaultEnvironment": "dev",
+    "cli": {
+        "defaultStyle": "new-york",
+        "typescript": true
+    }
+}

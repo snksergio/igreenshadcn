@@ -1,0 +1,49 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "igreen",
+    "homepage": "http://localhost:3000",
+    "items": [
+        {
+            "name": "button",
+            "type": "registry:ui",
+            "files": [
+                "public/registry/components/button.json"
+            ]
+        },
+        {
+            "name": "checkbox",
+            "type": "registry:ui",
+            "files": [
+                "public/registry/components/checkbox.json"
+            ]
+        },
+        {
+            "name": "input",
+            "type": "registry:ui",
+            "files": [
+                "public/registry/components/input.json"
+            ]
+        },
+        {
+            "name": "label",
+            "type": "registry:ui",
+            "files": [
+                "public/registry/components/label.json"
+            ]
+        },
+        {
+            "name": "mode-toggle",
+            "type": "registry:ui",
+            "files": [
+                "public/registry/components/mode-toggle.json"
+            ]
+        },
+        {
+            "name": "example-card",
+            "type": "registry:block",
+            "files": [
+                "public/registry/components/example-card.json"
+            ]
+        }
+    ]
+}

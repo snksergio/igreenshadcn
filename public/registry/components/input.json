@@ -1,0 +1,17 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+    "name": "input",
+    "type": "registry:ui",
+    "dependencies": [
+        "class-variance-authority"
+    ],
+    "registryDependencies": [],
+    "files": [
+        {
+            "path": "components/ui/input.tsx",
+            "content": "import * as React from \"react\"\r\nimport { cva, type VariantProps } from \"class-variance-authority\"\r\n\r\nimport { cn } from \"@/lib/utils\"\r\n\r\n/**\r\n * Input Component\r\n * \r\n * Styled based on iGreen Design System.\r\n * Uses --h-formcontrol-* tokens for consistent sizing with Button.\r\n * \r\n * Sizes:\r\n * - sm: 32px (--h-formcontrol-sm)\r\n * - default: 36px (--h-formcontrol-md)\r\n * - lg: 40px (--h-formcontrol-lg)\r\n * - xl: 44px (--h-formcontrol-xl)\r\n * - 2xl: 48px (--h-formcontrol-2xl)\r\n */\r\n\r\nconst inputVariants = cva(\r\n  // Base styles\r\n  [\r\n    // Colors & selection\r\n    \"file:text-foreground placeholder:text-muted-foreground\",\r\n    \"selection:bg-primary selection:text-primary-foreground\",\r\n    \"border-input bg-background text-foreground\",\r\n    // Focus\r\n    \"focus-visible:border-ring focus-visible:ring-ring/50\",\r\n    \"focus-visible:ring-[length:var(--ring-focus-width)] focus-visible:outline-none\",\r\n    // Layout\r\n    \"w-full min-w-0 rounded-lg border shadow-xs\",\r\n    \"transition-[color,box-shadow]\",\r\n    // File input\r\n    \"file:inline-flex file:border-0 file:bg-transparent file:font-medium\",\r\n    // Disabled\r\n    \"disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50\",\r\n    // Invalid\r\n    \"aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40\",\r\n    // Dark mode\r\n    \"dark:bg-input/30\",\r\n  ],\r\n  {\r\n    variants: {\r\n      size: {\r\n        // Small: 32px height\r\n        sm: [\r\n          \"h-formcontrol-sm px-2.5 py-1\",\r\n          \"text-sm\", // Always 14px\r\n          \"file:h-6 file:text-sm\",\r\n        ],\r\n\r\n        // Default: 36px height\r\n        default: [\r\n          \"h-formcontrol-md px-3 py-1\",\r\n          \"text-sm\", // Always 14px\r\n          \"file:h-7 file:text-sm\",\r\n        ],\r\n\r\n        // Large: 40px height\r\n        lg: [\r\n          \"h-formcontrol-lg px-4 py-2\",\r\n          \"text-sm\", // Always 14px\r\n          \"file:h-8 file:text-sm\",\r\n        ],\r\n\r\n        // Extra Large: 44px height\r\n        xl: [\r\n          \"h-formcontrol-xl px-4 py-2.5\",\r\n          \"text-sm\", // Always 14px\r\n          \"file:h-8 file:text-sm\",\r\n        ],\r\n\r\n        // 2X Large: 48px height\r\n        \"2xl\": [\r\n          \"h-formcontrol-2xl px-5 py-3\",\r\n          \"text-sm\", // Always 14px\r\n          \"file:h-9 file:text-sm\",\r\n        ],\r\n      },\r\n    },\r\n    defaultVariants: {\r\n      size: \"default\",\r\n    },\r\n  }\r\n)\r\n\r\nexport interface InputProps\r\n  extends Omit<React.ComponentProps<\"input\">, \"size\">,\r\n    VariantProps<typeof inputVariants> {}\r\n\r\nfunction Input({ className, type, size, ...props }: InputProps) {\r\n  return (\r\n    <input\r\n      type={type}\r\n      data-slot=\"input\"\r\n      data-size={size}\r\n      className={cn(inputVariants({ size, className }))}\r\n      {...props}\r\n    />\r\n  )\r\n}\r\n\r\nexport { Input, inputVariants }\r\n",
+            "type": "registry:ui",
+            "target": "components/ui/input.tsx"
+        }
+    ]
+}

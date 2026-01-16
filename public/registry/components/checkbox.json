@@ -1,0 +1,18 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+    "name": "checkbox",
+    "type": "registry:ui",
+    "dependencies": [
+        "@radix-ui/react-checkbox",
+        "lucide-react"
+    ],
+    "registryDependencies": [],
+    "files": [
+        {
+            "path": "components/ui/checkbox.tsx",
+            "content": "\"use client\"\r\n\r\nimport * as React from \"react\"\r\nimport * as CheckboxPrimitive from \"@radix-ui/react-checkbox\"\r\nimport { Check } from \"lucide-react\"\r\n\r\nimport { cn } from \"@/lib/utils\"\r\n\r\nconst Checkbox = React.forwardRef<\r\n  React.ElementRef<typeof CheckboxPrimitive.Root>,\r\n  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>\r\n>(({ className, ...props }, ref) => (\r\n  <CheckboxPrimitive.Root\r\n    ref={ref}\r\n    className={cn(\r\n      \"peer size-4 shrink-0 rounded-xs bg-background\",\r\n        \"shadow-[0_0_0_1.5px_var(--border-strong)]\",\r\n        \"focus-visible:outline-none focus-visible:ring-[length:var(--ring-focus-width-lg)]  focus-visible:ring-ring/50\",\r\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\r\n        \"data-[state=checked]:bg-primary data-[state=checked]:shadow-[0_0_0_1.5px_var(--primary)] data-[state=checked]:text-primary-foreground\",\r\n        \"transition-[color,box-shadow,background-color]\",\r\n      className\r\n    )}\r\n    {...props}\r\n  >\r\n    <CheckboxPrimitive.Indicator\r\n      className={cn(\"flex items-center justify-center text-current\")}\r\n    >\r\n      <Check className=\"size-3.5\" />\r\n    </CheckboxPrimitive.Indicator>\r\n  </CheckboxPrimitive.Root>\r\n))\r\nCheckbox.displayName = CheckboxPrimitive.Root.displayName\r\n\r\nexport { Checkbox }\r\n",
+            "type": "registry:ui",
+            "target": "components/ui/checkbox.tsx"
+        }
+    ]
+}

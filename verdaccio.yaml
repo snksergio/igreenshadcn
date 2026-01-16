@@ -1,0 +1,28 @@
+storage: ./node_modules/.verdaccio/storage
+plugins: ./node_modules/.verdaccio/plugins
+
+web:
+  title: "iGreen Registry (Local)"
+
+auth:
+  htpasswd:
+    file: ./node_modules/.verdaccio/htpasswd
+    # Allow registration for testing
+    max_users: 1000
+
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+
+packages:
+  '@igreen/*':
+    # Scoped packages: hosted locally
+    access: $all
+    publish: $all
+    unpublish: $all
+    proxy: npmjs
+
+  '**':
+    # All other packages: proxy to npmjs
+    access: $all
+    proxy: npmjs

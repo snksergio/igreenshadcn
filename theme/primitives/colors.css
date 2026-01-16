@@ -1,0 +1,218 @@
+/**
+ * Primitives - Colors
+ * 
+ * Raw color scales in OKLCH format.
+ * These are the foundation of the color system.
+ * 
+ * Format: oklch(L C H)
+ * - L: Lightness (0-1)
+ * - C: Chroma (0-0.4)
+ * - H: Hue (0-360)
+ * 
+ * Scales:
+ * - Brand (Green): Primary brand color
+ * - Neutral (Grey): UI backgrounds, borders, text
+ * - Feedback: Success, Warning, Critical, Info
+ */
+
+:root {
+  /* ============================================
+     BASE COLORS
+     ============================================ */
+  --base-static-black: oklch(0 0 0);
+  --base-static-white: oklch(1 0 0);
+  --base-transparent: transparent;
+
+  /* ============================================
+     BRAND SCALE (Green)
+     Primary brand color - Hue: 155
+     ============================================ */
+
+  /**
+   * @token brand-50
+   * @description Tom mais claro da marca (tint).
+   * @usage Backgrounds sutis, hover de elementos claros.
+   */
+  --brand-50: oklch(0.97 0.02 155);
+  --brand-100: oklch(0.95 0.03 155);
+  --brand-200: oklch(0.88 0.07 155);
+  --brand-300: oklch(0.79 0.11 155);
+  --brand-400: oklch(0.70 0.14 155);
+
+  /**
+   * @token brand-500
+   * @description Cor principal da marca.
+   * @usage Botões primários, links ativos, bordas de destaque.
+   */
+  --brand-500: oklch(0.62 0.16 155);
+  --brand-600: oklch(0.52 0.15 158);
+  --brand-700: oklch(0.46 0.14 155);
+  --brand-800: oklch(0.37 0.11 155);
+  --brand-900: oklch(0.27 0.08 155);
+  --brand-950: oklch(0.16 0.05 155);
+
+  /* Brand Alpha Variants */
+  --brand-alpha-5: oklch(0.52 0.15 158 / 0.05);
+  --brand-alpha-10: oklch(0.52 0.15 158 / 0.10);
+  --brand-alpha-15: oklch(0.52 0.15 158 / 0.15);
+  --brand-alpha-20: oklch(0.52 0.15 158 / 0.20);
+  --brand-alpha-25: oklch(0.52 0.15 158 / 0.25);
+  --brand-alpha-30: oklch(0.52 0.15 158 / 0.30);
+  --brand-alpha-50: oklch(0.52 0.15 158 / 0.50);
+
+  /* ============================================
+     NEUTRAL SCALE (Grey)
+     UI backgrounds, borders, text - Hue: 265
+     ============================================ */
+  --neutral-0: oklch(1 0 0);
+
+  /**
+   * @token neutral-50
+   * @description Cinza muito claro, quase branco.
+   * @usage Backgrounds de página, áreas secundárias.
+   */
+  --neutral-50: oklch(0.985 0.002 265);
+  --neutral-100: oklch(0.97 0.003 265);
+  --neutral-200: oklch(0.92 0.004 265);
+  --neutral-300: oklch(0.87 0.005 265);
+  --neutral-400: oklch(0.79 0.006 265);
+
+  /**
+   * @token neutral-500
+   * @description Cinza médio.
+   * @usage Textos secundários (muted), ícones desabilitados.
+   */
+  --neutral-500: oklch(0.69 0.007 265);
+  --neutral-600: oklch(0.58 0.008 265);
+  --neutral-700: oklch(0.48 0.008 265);
+  --neutral-800: oklch(0.35 0.008 265);
+  --neutral-900: oklch(0.25 0.006 265);
+  --neutral-950: oklch(0.15 0.005 265);
+
+  /* Neutral Alpha Variants */
+  --neutral-alpha-5: oklch(0.15 0.005 265 / 0.05);
+  --neutral-alpha-10: oklch(0.15 0.005 265 / 0.10);
+  --neutral-alpha-15: oklch(0.15 0.005 265 / 0.15);
+  --neutral-alpha-20: oklch(0.15 0.005 265 / 0.20);
+  --neutral-alpha-25: oklch(0.15 0.005 265 / 0.25);
+  --neutral-alpha-30: oklch(0.15 0.005 265 / 0.30);
+  --neutral-alpha-50: oklch(0.15 0.005 265 / 0.50);
+
+  /* ============================================
+     FEEDBACK - WARNING (Orange)
+     Hue: 40-55
+     ============================================ */
+  --warning-50: oklch(0.96 0.04 55);
+  --warning-500: oklch(0.65 0.20 40);
+  --warning-600: oklch(0.55 0.18 40);
+  --warning-800: oklch(0.35 0.08 40);
+  --warning-alpha-20: oklch(0.65 0.20 40 / 0.20);
+
+  /* ============================================
+     FEEDBACK - SUCCESS (Green)
+     Hue: 155-158
+     ============================================ */
+  --success-50: oklch(0.97 0.02 155);
+  --success-500: oklch(0.52 0.15 158);
+  --success-600: oklch(0.46 0.14 155);
+  --success-800: oklch(0.37 0.11 155);
+  --success-alpha-20: oklch(0.52 0.15 158 / 0.20);
+
+  /* ============================================
+     FEEDBACK - CRITICAL (Red)
+     Hue: 15-25
+     ============================================ */
+  --critical-50: oklch(0.96 0.03 15);
+  --critical-500: oklch(0.55 0.22 25);
+  --critical-600: oklch(0.45 0.20 25);
+  --critical-800: oklch(0.30 0.08 25);
+  --critical-alpha-20: oklch(0.55 0.22 25 / 0.20);
+
+  /* ============================================
+     FEEDBACK - INFO (Blue)
+     Hue: 240-250
+     ============================================ */
+  --info-50: oklch(0.96 0.03 240);
+  --info-500: oklch(0.60 0.18 250);
+  --info-600: oklch(0.50 0.16 250);
+  --info-800: oklch(0.32 0.08 250);
+  --info-alpha-20: oklch(0.60 0.18 250 / 0.20);
+}
+
+/* ============================================
+   DARK MODE OVERRIDES
+   ============================================ */
+.dark {
+  /* Neutral Scale - Inverted */
+  --neutral-0: oklch(0.15 0.005 265);
+  --neutral-50: oklch(0.25 0.006 265);
+  --neutral-100: oklch(0.35 0.008 265);
+  --neutral-200: oklch(0.48 0.008 265);
+  --neutral-300: oklch(0.58 0.008 265);
+  --neutral-400: oklch(0.69 0.007 265);
+  --neutral-500: oklch(0.79 0.006 265);
+  --neutral-600: oklch(0.87 0.005 265);
+  --neutral-700: oklch(0.92 0.004 265);
+  --neutral-800: oklch(0.97 0.003 265);
+  --neutral-900: oklch(0.985 0.002 265);
+  --neutral-950: oklch(1 0 0);
+
+  /* Neutral Alpha - Light base for dark mode */
+  --neutral-alpha-5: oklch(1 0 0 / 0.05);
+  --neutral-alpha-10: oklch(1 0 0 / 0.10);
+  --neutral-alpha-15: oklch(1 0 0 / 0.15);
+  --neutral-alpha-20: oklch(1 0 0 / 0.20);
+  --neutral-alpha-25: oklch(1 0 0 / 0.25);
+  --neutral-alpha-30: oklch(1 0 0 / 0.30);
+  --neutral-alpha-50: oklch(1 0 0 / 0.50);
+
+  /* Brand Scale - Adjusted for dark backgrounds */
+  --brand-50: oklch(0.16 0.05 155);
+  --brand-100: oklch(0.27 0.08 155);
+  --brand-200: oklch(0.37 0.11 155);
+  --brand-300: oklch(0.46 0.14 155);
+  --brand-400: oklch(0.52 0.15 158);
+  --brand-500: oklch(0.62 0.16 155);
+  --brand-600: oklch(0.70 0.14 155);
+  --brand-700: oklch(0.79 0.11 155);
+  --brand-800: oklch(0.88 0.07 155);
+  --brand-900: oklch(0.95 0.03 155);
+  --brand-950: oklch(0.97 0.02 155);
+
+  /* Brand Alpha - Lighter for dark mode */
+  --brand-alpha-5: oklch(0.70 0.14 155 / 0.05);
+  --brand-alpha-10: oklch(0.70 0.14 155 / 0.10);
+  --brand-alpha-15: oklch(0.70 0.14 155 / 0.15);
+  --brand-alpha-20: oklch(0.70 0.14 155 / 0.20);
+  --brand-alpha-25: oklch(0.70 0.14 155 / 0.25);
+  --brand-alpha-30: oklch(0.70 0.14 155 / 0.30);
+  --brand-alpha-50: oklch(0.70 0.14 155 / 0.50);
+
+  /* Warning - Brighter for dark backgrounds */
+  --warning-50: oklch(0.35 0.08 40);
+  --warning-500: oklch(0.72 0.18 40);
+  --warning-600: oklch(0.78 0.16 40);
+  --warning-800: oklch(0.92 0.06 55);
+  --warning-alpha-20: oklch(0.72 0.18 40 / 0.20);
+
+  /* Success - Brighter for dark backgrounds */
+  --success-50: oklch(0.37 0.11 155);
+  --success-500: oklch(0.62 0.16 155);
+  --success-600: oklch(0.70 0.14 155);
+  --success-800: oklch(0.88 0.07 155);
+  --success-alpha-20: oklch(0.62 0.16 155 / 0.20);
+
+  /* Critical - Brighter for dark backgrounds */
+  --critical-50: oklch(0.30 0.08 25);
+  --critical-500: oklch(0.65 0.20 25);
+  --critical-600: oklch(0.72 0.18 25);
+  --critical-800: oklch(0.92 0.06 15);
+  --critical-alpha-20: oklch(0.65 0.20 25 / 0.20);
+
+  /* Info - Brighter for dark backgrounds */
+  --info-50: oklch(0.32 0.08 250);
+  --info-500: oklch(0.68 0.16 250);
+  --info-600: oklch(0.75 0.14 250);
+  --info-800: oklch(0.92 0.04 240);
+  --info-alpha-20: oklch(0.68 0.16 250 / 0.20);
+}

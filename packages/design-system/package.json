@@ -1,0 +1,28 @@
+{
+    "name": "@igreen/design-system",
+    "version": "1.0.0",
+    "description": "iGreen Design System - Complete Package",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch"
+    },
+    "dependencies": {
+        "@igreen/themes": "file:../themes",
+        "@igreen/utils": "file:../utils",
+        "@igreen/button": "file:../components/button",
+        "@igreen/checkbox": "file:../components/checkbox",
+        "@igreen/input": "file:../components/input",
+        "@igreen/label": "file:../components/label",
+        "@igreen/mode-toggle": "file:../components/mode-toggle",
+        "@igreen/example-card": "file:../components/example-card"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "http://localhost:4873"
+    }
+}

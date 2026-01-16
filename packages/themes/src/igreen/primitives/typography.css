@@ -1,0 +1,102 @@
+/**
+ * Primitives - Typography
+ * 
+ * Proportional typography system based on --typography-base.
+ * All font sizes are calculated as multipliers of the base,
+ * similar to how --spacing works for dimensions.
+ * 
+ * Change --typography-base to scale all typography proportionally.
+ * 
+ * NOTE: Variables use --typography-* prefix to avoid conflicts
+ * with Tailwind's --font-size-* variables in @theme.
+ */
+
+:root {
+  /* ============================================
+     BASE FONT SIZE
+     
+     All other font sizes are calculated from this value.
+     Change this to scale entire typography system.
+     
+     Default: 1rem (16px)
+     Compact: 0.875rem (14px)
+     Large: 1.125rem (18px)
+     ============================================ */
+  --typography-base: 1rem; /* 16px */
+
+  /* ============================================
+     FONT SIZE SCALE
+     
+     Calculated proportionally from --typography-base.
+     Maintains Tailwind's default ratios.
+     
+     ┌───────────┬────────────┬─────────┬─────────────────┐
+     │ Token     │ Multiplier │ Default │ If base = 18px  │
+     ├───────────┼────────────┼─────────┼─────────────────┤
+     │ text-2xs  │ × 0.6875   │ 11px    │ 12.375px        │
+     │ text-xs   │ × 0.75     │ 12px    │ 13.5px          │
+     │ text-sm   │ × 0.875    │ 14px    │ 15.75px         │
+     │ text-base │ × 1.0      │ 16px    │ 18px            │
+     │ text-lg   │ × 1.125    │ 18px    │ 20.25px         │
+     │ text-xl   │ × 1.25     │ 20px    │ 22.5px          │
+     │ text-2xl  │ × 1.5      │ 24px    │ 27px            │
+     │ text-3xl  │ × 1.875    │ 30px    │ 33.75px         │
+     │ text-4xl  │ × 2.25     │ 36px    │ 40.5px          │
+     │ text-5xl  │ × 3.0      │ 48px    │ 54px            │
+     │ text-6xl  │ × 3.75     │ 60px    │ 67.5px          │
+     │ text-7xl  │ × 4.5      │ 72px    │ 81px            │
+     │ text-8xl  │ × 6.0      │ 96px    │ 108px           │
+     │ text-9xl  │ × 8.0      │ 128px   │ 144px           │
+     └───────────┴────────────┴─────────┴─────────────────┘
+     ============================================ */
+  
+  --typography-2xs:  calc(var(--typography-base) * 0.6875);  /* 11px */
+  --typography-xs:   calc(var(--typography-base) * 0.75);    /* 12px */
+  --typography-sm:   calc(var(--typography-base) * 0.875);   /* 14px */
+  /* --typography-base is defined above */
+  --typography-lg:   calc(var(--typography-base) * 1.125);   /* 18px */
+  --typography-xl:   calc(var(--typography-base) * 1.25);    /* 20px */
+  --typography-2xl:  calc(var(--typography-base) * 1.5);     /* 24px */
+  --typography-3xl:  calc(var(--typography-base) * 1.875);   /* 30px */
+  --typography-4xl:  calc(var(--typography-base) * 2.25);    /* 36px */
+  --typography-5xl:  calc(var(--typography-base) * 3);       /* 48px */
+  --typography-6xl:  calc(var(--typography-base) * 3.75);    /* 60px */
+  --typography-7xl:  calc(var(--typography-base) * 4.5);     /* 72px */
+  --typography-8xl:  calc(var(--typography-base) * 6);       /* 96px */
+  --typography-9xl:  calc(var(--typography-base) * 8);       /* 128px */
+
+  /* ============================================
+     LINE HEIGHTS
+     
+     Paired with font sizes for optimal readability.
+     ============================================ */
+  --typography-leading-none: 1;
+  --typography-leading-tight: 1.25;
+  --typography-leading-snug: 1.375;
+  --typography-leading-normal: 1.5;
+  --typography-leading-relaxed: 1.625;
+  --typography-leading-loose: 2;
+
+  /* ============================================
+     FONT WEIGHTS
+     ============================================ */
+  --typography-weight-thin: 100;
+  --typography-weight-extralight: 200;
+  --typography-weight-light: 300;
+  --typography-weight-normal: 400;
+  --typography-weight-medium: 500;
+  --typography-weight-semibold: 600;
+  --typography-weight-bold: 700;
+  --typography-weight-extrabold: 800;
+  --typography-weight-black: 900;
+
+  /* ============================================
+     LETTER SPACING (Tracking)
+     ============================================ */
+  --typography-tracking-tighter: -0.05em;
+  --typography-tracking-tight: -0.025em;
+  --typography-tracking-normal: 0em;
+  --typography-tracking-wide: 0.025em;
+  --typography-tracking-wider: 0.05em;
+  --typography-tracking-widest: 0.1em;
+}

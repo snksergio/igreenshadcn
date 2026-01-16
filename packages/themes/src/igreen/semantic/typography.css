@@ -1,0 +1,116 @@
+/**
+ * Semantic - Typography Styles
+ * 
+ * Typography presets optimized for Dashboard interfaces.
+ * Each style defines: font-size, font-weight, line-height, and recommended color.
+ * 
+ * Usage:
+ * - Apply via utility classes: text-page-title, text-body, text-caption, etc.
+ * - Or reference individual tokens in custom components.
+ * 
+ * These styles consume the proportional font-size system from primitives,
+ * so they scale automatically when --typography-base changes.
+ * 
+ * ┌─────────────────┬─────────┬──────────┬─────────────┬───────────────────────────┐
+ * │ Token           │ Size    │ Weight   │ Color       │ Use Case                  │
+ * ├─────────────────┼─────────┼──────────┼─────────────┼───────────────────────────┤
+ * │ page-title      │ 24px    │ bold     │ fg-strong   │ Page titles               │
+ * │ section-title   │ 16px    │ semibold │ fg-strong   │ Section/card titles       │
+ * │ body-lg         │ 16px    │ regular  │ fg-main     │ Lead text, introductions  │
+ * │ body            │ 14px    │ regular  │ fg-main     │ Default paragraph text    │
+ * │ label           │ 14px    │ medium   │ fg-strong   │ Form labels               │
+ * │ label-sm        │ 12px    │ medium   │ fg-strong   │ Small labels              │
+ * │ table-header    │ 14px    │ medium   │ fg-moderate │ Table column headers      │
+ * │ table-cell      │ 14px    │ regular  │ fg-main     │ Table cell content        │
+ * │ caption         │ 12px    │ regular  │ fg-muted    │ Timestamps, legends       │
+ * │ micro           │ 11px    │ regular  │ fg-muted    │ Descriptions, small badges│
+ * └─────────────────┴─────────┴──────────┴─────────────┴───────────────────────────┘
+ */
+
+:root {
+  /* ============================================
+     PAGE TITLE
+     
+     For main page headings.
+     24px • Bold • fg-strong
+     ============================================ */
+  --text-page-title-size: var(--typography-2xl);
+  --text-page-title-weight: var(--typography-weight-bold);
+  --text-page-title-line-height: var(--typography-leading-tight);
+  --text-page-title-tracking: var(--typography-tracking-tight);
+
+  /* ============================================
+     SECTION TITLE
+     
+     For section and card titles.
+     16px • Semibold • fg-strong
+     ============================================ */
+  --text-section-title-size: var(--typography-base);
+  --text-section-title-weight: var(--typography-weight-semibold);
+  --text-section-title-line-height: var(--typography-leading-snug);
+  --text-section-title-tracking: var(--typography-tracking-normal);
+
+  /* ============================================
+     BODY STYLES
+     
+     For paragraphs and general content.
+     ============================================ */
+
+  /* Body - Default paragraph text (14px • Regular • fg-main) */
+  --text-body-size: var(--typography-sm);
+  --text-body-weight: var(--typography-weight-normal);
+  --text-body-line-height: var(--typography-leading-normal);
+
+  /* Body Large - Lead text (16px • Regular • fg-main) */
+  --text-body-lg-size: var(--typography-base);
+  --text-body-lg-weight: var(--typography-weight-normal);
+  --text-body-lg-line-height: var(--typography-leading-relaxed);
+
+  /* ============================================
+     LABEL STYLES
+     
+     For form labels and UI controls.
+     ============================================ */
+
+  /* Label - Form labels (14px • Medium • fg-strong) */
+  --text-label-size: var(--typography-sm);
+  --text-label-weight: var(--typography-weight-medium);
+  --text-label-line-height: var(--typography-leading-none);
+
+  /* Label Small - Compact labels (12px • Medium • fg-strong) */
+  --text-label-sm-size: var(--typography-xs);
+  --text-label-sm-weight: var(--typography-weight-medium);
+  --text-label-sm-line-height: var(--typography-leading-none);
+
+  /* ============================================
+     TABLE STYLES
+     
+     For data tables and lists.
+     ============================================ */
+
+  /* Table Header (14px • Medium • fg-moderate) */
+  --text-table-header-size: var(--typography-sm);
+  --text-table-header-weight: var(--typography-weight-medium);
+  --text-table-header-line-height: var(--typography-leading-normal);
+
+  /* Table Cell (14px • Regular • fg-main) */
+  --text-table-cell-size: var(--typography-sm);
+  --text-table-cell-weight: var(--typography-weight-normal);
+  --text-table-cell-line-height: var(--typography-leading-normal);
+
+  /* ============================================
+     SUPPORTING STYLES
+     
+     For secondary and de-emphasized content.
+     ============================================ */
+
+  /* Caption - Timestamps, legends (12px • Regular • fg-muted) */
+  --text-caption-size: var(--typography-xs);
+  --text-caption-weight: var(--typography-weight-normal);
+  --text-caption-line-height: var(--typography-leading-normal);
+
+  /* Micro - Small descriptions, badges (11px • Regular • fg-muted) */
+  --text-micro-size: var(--typography-2xs);
+  --text-micro-weight: var(--typography-weight-normal);
+  --text-micro-line-height: var(--typography-leading-normal);
+}

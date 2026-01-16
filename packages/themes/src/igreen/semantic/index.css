@@ -1,0 +1,12 @@
+/**
+ * Semantic - Index
+ * 
+ * Entry point for all semantic tokens.
+ * Import order matters for CSS variable resolution.
+ */
+
+@import "./colors.css";
+@import "./effects.css";
+@import "./motion.css";
+@import "./sizing.css";
+@import "./typography.css";

@@ -9,6 +9,8 @@
   ],
   "scripts": {
     "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "build:all": "npm run build:themes && npm run build:components",
     "build:themes": "cd packages/themes && npm run build",
     "build:all-components": "tsx scripts/build-all-components.ts",

@@ -1,6 +1,5 @@
 import type { Preview } from "@storybook/react";
-import '@igreen/themes/dist/igreen.css'; // Import themes
-import '@igreen/themes/dist/bridge.css'; // Import bridge for shadcn
+import '../src/globals.css';
 
 const preview: Preview = {
     parameters: {

@@ -13,9 +13,9 @@ Nosso sistema utiliza uma arquitetura estrita de **3 Camadas**. O fluxo de depen
 
 ### 🟢 Primitives (Fundação)
 Valores brutos. Representam a paleta total disponível.
-* **Local**: `theme/primitives/*.css`
+* **Local**: `packages/themes/src/igreen/primitives/*.css`
 * **NUNCA** use em componentes (ex: `button.tsx`).
-* **NUNCA** use em `bridge/shadcn.css`.
+* **NUNCA** use em `bridge/shadcn-compat.css`.
 
 **Convenção de Nomenclatura:**
 `--{categoria}-{escala}-{grau}`
@@ -26,7 +26,7 @@ Valores brutos. Representam a paleta total disponível.
 
 ### 🔵 Semantic (Intenção)
 O significado do valor. Descreve **O QUE** o token faz, não qual cor ele é.
-* **Local**: `theme/semantic/*.css`
+* **Local**: `packages/themes/src/igreen/semantic/*.css`
 * **USO**: Permitido em componentes customizados e no `globals.css`.
 
 **Convenção de Nomenclatura:**
@@ -38,7 +38,7 @@ O significado do valor. Descreve **O QUE** o token faz, não qual cor ele é.
 
 ### 🔴 Bridge (Compatibilidade)
 Camada de tradução para bibliotecas de terceiros (Shadcn/UI).
-* **Local**: `theme/bridge/*.css`
+* **Local**: `packages/themes/src/bridge/*.css`
 * **Regra**: Arquivos aqui devem conter **APENAS** mapeamentos de `var(--shadcn-var)` para `var(--semantic-var)`. Sem valores hexadecimais (hardcoded).
 
 ---
@@ -65,7 +65,7 @@ Adotamos o modelo "Standard Plus". Mantemos a base do shadcn mas expandimos suas
 ## 3. Guia de Contribuição
 
 ### Adicionando uma Nova Cor
-1.  **Primitive**: A cor existe na paleta? Se não, adicione em `theme/primitives/colors.css`.
+1.  **Primitive**: A cor existe na paleta? Se não, adicione em `packages/themes/src/igreen/primitives/colors.css`.
     ```css
     /**
      * @token special-500
@@ -73,7 +73,7 @@ Adotamos o modelo "Standard Plus". Mantemos a base do shadcn mas expandimos suas
      */
     --special-500: oklch(...);
     ```
-2.  **Semantic**: Defina o uso. `theme/semantic/colors.css`.
+2.  **Semantic**: Defina o uso. `packages/themes/src/igreen/semantic/backgrounds.css`.
     ```css
     --bg-campaign-card: var(--special-500);
     ```

@@ -93,6 +93,12 @@ const semanticBorderTokens = [
 // PRIMITIVE TOKENS
 // ============================================
 
+const baseColors = [
+  { name: "base-static-black", variable: "--base-static-black", description: "Preto absoluto" },
+  { name: "base-static-white", variable: "--base-static-white", description: "Branco absoluto" },
+  { name: "base-transparent", variable: "--base-transparent", description: "Transparente" },
+] as const
+
 const brandScale = [
   { name: "brand-50", variable: "--brand-50" },
   { name: "brand-100", variable: "--brand-100" },
@@ -114,6 +120,7 @@ const brandAlphaScale = [
   { name: "brand-alpha-20", variable: "--brand-alpha-20", opacity: "20%" },
   { name: "brand-alpha-25", variable: "--brand-alpha-25", opacity: "25%" },
   { name: "brand-alpha-30", variable: "--brand-alpha-30", opacity: "30%" },
+  { name: "brand-alpha-50", variable: "--brand-alpha-50", opacity: "50%" },
 ] as const
 
 const neutralScale = [
@@ -138,6 +145,7 @@ const neutralAlphaScale = [
   { name: "neutral-alpha-20", variable: "--neutral-alpha-20", opacity: "20%" },
   { name: "neutral-alpha-25", variable: "--neutral-alpha-25", opacity: "25%" },
   { name: "neutral-alpha-30", variable: "--neutral-alpha-30", opacity: "30%" },
+  { name: "neutral-alpha-50", variable: "--neutral-alpha-50", opacity: "50%" },
 ] as const
 
 const feedbackScales = {
@@ -205,18 +213,18 @@ const focusRingTokens = [
 // COMPONENTS
 // ============================================
 
-function ColorSwatch({ 
-  name, 
-  variable, 
-  description 
-}: { 
+function ColorSwatch({
+  name,
+  variable,
+  description
+}: {
   name: string
   variable: string
-  description?: string 
+  description?: string
 }) {
   return (
     <div className="group flex items-center gap-4 rounded-lg border border-border bg-card p-3 transition-colors hover:bg-accent/30">
-      <div 
+      <div
         className="size-12 shrink-0 rounded-md border border-border shadow-sm"
         style={{ backgroundColor: `var(${variable})` }}
       />
@@ -231,10 +239,10 @@ function ColorSwatch({
   )
 }
 
-function ColorScale({ 
-  tokens, 
-  label 
-}: { 
+function ColorScale({
+  tokens,
+  label
+}: {
   tokens: readonly { name: string; variable: string }[]
   label?: string
 }) {
@@ -266,7 +274,7 @@ function ColorScale({
 function RadiusSwatch({ name, variable }: { name: string; variable: string }) {
   return (
     <div className="flex flex-col items-center gap-3 rounded-lg border border-border bg-card p-4">
-      <div 
+      <div
         className="size-16 border-2 border-primary bg-primary/10"
         style={{ borderRadius: `var(${variable})` }}
       />
@@ -278,14 +286,14 @@ function RadiusSwatch({ name, variable }: { name: string; variable: string }) {
   )
 }
 
-function SectionHeader({ 
-  icon: Icon, 
-  title, 
-  description 
-}: { 
+function SectionHeader({
+  icon: Icon,
+  title,
+  description
+}: {
   icon: React.ElementType
   title: string
-  description: string 
+  description: string
 }) {
   return (
     <div className="mb-6">
@@ -338,13 +346,28 @@ export default function TokensPage() {
           PRIMITIVES SECTION
           ============================================ */}
       <section>
-        <SectionHeader 
-          icon={Paintbrush} 
-          title="Primitive Scales" 
+        <SectionHeader
+          icon={Paintbrush}
+          title="Primitive Scales"
           description="Escalas de cores brutas que formam a base do design system."
         />
-        
+
         <div className="space-y-8">
+          {/* Base Colors */}
+          <div>
+            <SubsectionHeader title="Base Colors" />
+            <div className="grid gap-3 sm:grid-cols-3">
+              {baseColors.map((token) => (
+                <ColorSwatch
+                  key={token.name}
+                  name={token.name}
+                  variable={token.variable}
+                  description={token.description}
+                />
+              ))}
+            </div>
+          </div>
+
           {/* Brand Scale */}
           <div>
             <SubsectionHeader title="Brand Scale (Green)" />
@@ -359,16 +382,16 @@ export default function TokensPage() {
                     key={token.name}
                     className="relative rounded-lg border border-border overflow-hidden"
                   >
-                    <div 
+                    <div
                       className="h-12"
-                      style={{ 
+                      style={{
                         backgroundColor: `var(${token.variable})`,
                         backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
                         backgroundSize: '8px 8px',
                         backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px'
                       }}
                     >
-                      <div 
+                      <div
                         className="w-full h-full"
                         style={{ backgroundColor: `var(${token.variable})` }}
                       />
@@ -382,7 +405,7 @@ export default function TokensPage() {
               </div>
             </div>
           </div>
-          
+
           {/* Neutral Scale */}
           <div>
             <SubsectionHeader title="Neutral Scale (Grey)" />
@@ -397,15 +420,15 @@ export default function TokensPage() {
                     key={token.name}
                     className="relative rounded-lg border border-border overflow-hidden"
                   >
-                    <div 
+                    <div
                       className="h-12"
-                      style={{ 
+                      style={{
                         backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
                         backgroundSize: '8px 8px',
                         backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px'
                       }}
                     >
-                      <div 
+                      <div
                         className="w-full h-full"
                         style={{ backgroundColor: `var(${token.variable})` }}
                       />
@@ -419,7 +442,7 @@ export default function TokensPage() {
               </div>
             </div>
           </div>
-          
+
           {/* Feedback Scales */}
           <div>
             <SubsectionHeader title="Feedback Scales" />
@@ -439,15 +462,15 @@ export default function TokensPage() {
                     key={token.name}
                     className="relative rounded-lg border border-border overflow-hidden"
                   >
-                    <div 
+                    <div
                       className="h-12"
-                      style={{ 
+                      style={{
                         backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
                         backgroundSize: '8px 8px',
                         backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px'
                       }}
                     >
-                      <div 
+                      <div
                         className="w-full h-full"
                         style={{ backgroundColor: `var(${token.variable})` }}
                       />
@@ -468,21 +491,21 @@ export default function TokensPage() {
           SEMANTIC RINGS
           ============================================ */}
       <section>
-        <SectionHeader 
-          icon={Circle} 
-          title="Semantic Rings" 
+        <SectionHeader
+          icon={Circle}
+          title="Semantic Rings"
           description="Tokens para focus rings e estados de foco (--ring-*)."
         />
-        
+
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {ringTokens.map((token) => (
-            <div 
+            <div
               key={token.name}
               className="flex items-center gap-4 rounded-lg border border-border bg-card p-3"
             >
-              <div 
+              <div
                 className="size-12 rounded-md border-2 border-border ring-4"
-                style={{ 
+                style={{
                   boxShadow: `0 0 0 4px var(${token.variable})`
                 }}
               />
@@ -499,20 +522,20 @@ export default function TokensPage() {
           SEMANTIC BACKGROUNDS
           ============================================ */}
       <section>
-        <SectionHeader 
-          icon={Layers} 
-          title="Semantic Backgrounds" 
+        <SectionHeader
+          icon={Layers}
+          title="Semantic Backgrounds"
           description="Tokens contextuais para fundos e superfícies (--bg-*)."
         />
-        
+
         <div className="space-y-8">
           <div>
             <SubsectionHeader title="Base Backgrounds" />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {semanticBgTokens.map((token) => (
-                <ColorSwatch 
-                  key={token.name} 
-                  name={token.name} 
+                <ColorSwatch
+                  key={token.name}
+                  name={token.name}
                   variable={token.variable}
                   description={token.description}
                 />
@@ -524,9 +547,9 @@ export default function TokensPage() {
             <SubsectionHeader title="Feedback Backgrounds" />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {semanticFeedbackBgTokens.map((token) => (
-                <ColorSwatch 
-                  key={token.name} 
-                  name={token.name} 
+                <ColorSwatch
+                  key={token.name}
+                  name={token.name}
                   variable={token.variable}
                   description={token.description}
                 />
@@ -540,23 +563,23 @@ export default function TokensPage() {
           SEMANTIC FOREGROUNDS
           ============================================ */}
       <section>
-        <SectionHeader 
-          icon={Type} 
-          title="Semantic Foregrounds" 
+        <SectionHeader
+          icon={Type}
+          title="Semantic Foregrounds"
           description="Tokens contextuais para texto e ícones (--fg-*)."
         />
-        
+
         <div className="space-y-8">
           <div>
             <SubsectionHeader title="Text Colors" />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {semanticFgTokens.map((token) => (
-                <div 
+                <div
                   key={token.name}
                   className="flex items-center gap-4 rounded-lg border border-border bg-card p-3"
                 >
                   <div className="flex size-12 items-center justify-center rounded-md border border-border bg-background">
-                    <span 
+                    <span
                       className="text-lg font-bold"
                       style={{ color: `var(${token.variable})` }}
                     >
@@ -576,12 +599,12 @@ export default function TokensPage() {
             <SubsectionHeader title="Feedback Text Colors" />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {semanticFgFeedbackTokens.map((token) => (
-                <div 
+                <div
                   key={token.name}
                   className="flex items-center gap-4 rounded-lg border border-border bg-card p-3"
                 >
                   <div className="flex size-12 items-center justify-center rounded-md border border-border bg-background">
-                    <span 
+                    <span
                       className="text-lg font-bold"
                       style={{ color: `var(${token.variable})` }}
                     >
@@ -603,19 +626,19 @@ export default function TokensPage() {
           SEMANTIC BORDERS
           ============================================ */}
       <section>
-        <SectionHeader 
-          icon={Circle} 
-          title="Semantic Borders" 
+        <SectionHeader
+          icon={Circle}
+          title="Semantic Borders"
           description="Tokens contextuais para bordas (--border-*)."
         />
-        
+
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {semanticBorderTokens.map((token) => (
-            <div 
+            <div
               key={token.name}
               className="flex items-center gap-4 rounded-lg border border-border bg-card p-3"
             >
-              <div 
+              <div
                 className="size-12 rounded-md border-2"
                 style={{ borderColor: `var(${token.variable})` }}
               />
@@ -632,20 +655,20 @@ export default function TokensPage() {
           SHADCN BRIDGE
           ============================================ */}
       <section>
-        <SectionHeader 
-          icon={Palette} 
-          title="Shadcn Bridge" 
+        <SectionHeader
+          icon={Palette}
+          title="Shadcn Bridge"
           description="Variáveis padrão do Shadcn mapeadas para tokens semânticos."
         />
-        
+
         <div className="space-y-8">
           <div>
             <SubsectionHeader title="Core Colors" />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {shadcnCoreTokens.map((token) => (
-                <ColorSwatch 
-                  key={token.name} 
-                  name={token.name} 
+                <ColorSwatch
+                  key={token.name}
+                  name={token.name}
                   variable={token.variable}
                   description={token.description}
                 />
@@ -657,9 +680,9 @@ export default function TokensPage() {
             <SubsectionHeader title="Surface Colors" />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {surfaceTokens.map((token) => (
-                <ColorSwatch 
-                  key={token.name} 
-                  name={token.name} 
+                <ColorSwatch
+                  key={token.name}
+                  name={token.name}
                   variable={token.variable}
                   description={token.description}
                 />
@@ -673,16 +696,16 @@ export default function TokensPage() {
           RADIUS
           ============================================ */}
       <section>
-        <SectionHeader 
-          icon={CornerDownRight} 
-          title="Border Radius" 
+        <SectionHeader
+          icon={CornerDownRight}
+          title="Border Radius"
           description="Variações de arredondamento de bordas."
         />
         <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {radiusTokens.map((token) => (
-            <RadiusSwatch 
-              key={token.name} 
-              name={token.name} 
+            <RadiusSwatch
+              key={token.name}
+              name={token.name}
               variable={token.variable}
             />
           ))}
@@ -693,12 +716,12 @@ export default function TokensPage() {
           FOCUS RING
           ============================================ */}
       <section>
-        <SectionHeader 
-          icon={Focus} 
-          title="Focus Ring" 
+        <SectionHeader
+          icon={Focus}
+          title="Focus Ring"
           description="Tokens padronizados para indicação de foco em componentes interativos. Usar com outline ou ring."
         />
-        
+
         {/* Focus Ring Table */}
         <div className="mb-6 overflow-x-auto">
           <table className="w-full text-sm border-collapse">
@@ -722,22 +745,22 @@ export default function TokensPage() {
             </tbody>
           </table>
         </div>
-        
+
         {/* Usage Example */}
         <div className="rounded-lg border border-border bg-background p-6">
           <h4 className="text-label mb-4">Como usar</h4>
           <div className="space-y-4 font-mono text-xs">
             <div className="p-3 rounded bg-muted/50">
-              <span className="text-fg-muted">// Com outline (botões)</span><br/>
-              <code>outline-focus outline-transparent</code><br/>
+              <span className="text-fg-muted">// Com outline (botões)</span><br />
+              <code>outline-focus outline-transparent</code><br />
               <code>focus-visible:outline-focus focus-visible:outline-ring/50</code>
             </div>
             <div className="p-3 rounded bg-muted/50">
-              <span className="text-fg-muted">// Com ring (inputs, checkboxes)</span><br/>
+              <span className="text-fg-muted">// Com ring (inputs, checkboxes)</span><br />
               <code>focus-visible:ring-focus focus-visible:ring-ring/50</code>
             </div>
           </div>
-          
+
           {/* Visual Demo */}
           <h4 className="text-label mt-6 mb-4">Demonstração</h4>
           <div className="flex flex-wrap gap-4">
@@ -758,12 +781,12 @@ export default function TokensPage() {
           TYPOGRAPHY
           ============================================ */}
       <section>
-        <SectionHeader 
-          icon={Type} 
-          title="Typography" 
+        <SectionHeader
+          icon={Type}
+          title="Typography"
           description="Sistema tipográfico otimizado para dashboards. Classes utilitárias com tamanho, peso e cor incluídos."
         />
-        
+
         {/* Typography Scale Table */}
         <div className="mb-8 overflow-x-auto">
           <table className="w-full text-sm border-collapse">
@@ -854,7 +877,7 @@ export default function TokensPage() {
         {/* Live Examples */}
         <div className="space-y-6 rounded-lg border border-border bg-card p-6">
           <SubsectionHeader title="Exemplos Visuais" />
-          
+
           <div className="space-y-6">
             {/* Page Title */}
             <div className="border-b border-border pb-4">
@@ -865,7 +888,7 @@ export default function TokensPage() {
                 Título Principal da Página
               </h1>
             </div>
-            
+
             {/* Section Title */}
             <div className="border-b border-border pb-4">
               <span className="mb-2 inline-block font-mono text-xs text-muted-foreground">
@@ -875,7 +898,7 @@ export default function TokensPage() {
                 Título de Seção ou Card
               </h2>
             </div>
-            
+
             {/* Body Large */}
             <div className="border-b border-border pb-4">
               <span className="mb-2 inline-block font-mono text-xs text-muted-foreground">
@@ -885,7 +908,7 @@ export default function TokensPage() {
                 Texto com maior destaque, usado para introduções ou parágrafos importantes.
               </p>
             </div>
-            
+
             {/* Body */}
             <div className="border-b border-border pb-4">
               <span className="mb-2 inline-block font-mono text-xs text-muted-foreground">
@@ -895,7 +918,7 @@ export default function TokensPage() {
                 Texto padrão para parágrafos e conteúdo geral do dashboard. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
             </div>
-            
+
             {/* Label */}
             <div className="border-b border-border pb-4">
               <span className="mb-2 inline-block font-mono text-xs text-muted-foreground">
@@ -905,7 +928,7 @@ export default function TokensPage() {
                 Label de Formulário
               </p>
             </div>
-            
+
             {/* Label Small */}
             <div className="border-b border-border pb-4">
               <span className="mb-2 inline-block font-mono text-xs text-muted-foreground">
@@ -935,7 +958,7 @@ export default function TokensPage() {
                 Conteúdo de célula de tabela
               </p>
             </div>
-            
+
             {/* Caption */}
             <div className="border-b border-border pb-4">
               <span className="mb-2 inline-block font-mono text-xs text-muted-foreground">
@@ -945,7 +968,7 @@ export default function TokensPage() {
                 Legenda ou timestamp · Atualizado há 5 minutos
               </p>
             </div>
-            
+
             {/* Micro */}
             <div>
               <span className="mb-2 inline-block font-mono text-xs text-muted-foreground">
@@ -998,12 +1021,12 @@ export default function TokensPage() {
           HOW TO ADD NEW TOKENS
           ============================================ */}
       <section>
-        <SectionHeader 
-          icon={BookOpen} 
-          title="Como Adicionar Novos Tokens" 
+        <SectionHeader
+          icon={BookOpen}
+          title="Como Adicionar Novos Tokens"
           description="Guia passo a passo para expandir o design system."
         />
-        
+
         <div className="space-y-6">
           {/* Step 1 */}
           <div className="rounded-lg border border-border bg-card p-6">

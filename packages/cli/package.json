@@ -1,7 +1,7 @@
 {
     "name": "@igreen/cli",
-    "version": "0.0.14",
-    "description": "CLI for iGreen Design System",
+    "version": "0.1.2",
+    "description": "CLI for iGreen Design System - Works with Public NPM",
     "bin": {
         "igreen": "dist/index.js"
     },
@@ -35,5 +35,9 @@
         "@types/prompts": "^2.4.9",
         "typescript": "^5.3.3"
     },
-    "type": "module"
+    "type": "module",
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org"
+    }
 }

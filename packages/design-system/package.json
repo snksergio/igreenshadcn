@@ -1,28 +1,29 @@
 {
-    "name": "@igreen/design-system",
-    "version": "1.0.0",
-    "description": "iGreen Design System - Complete Package",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
-    "scripts": {
-        "build": "tsc",
-        "dev": "tsc --watch"
-    },
-    "dependencies": {
-        "@igreen/themes": "file:../themes",
-        "@igreen/utils": "file:../utils",
-        "@igreen/button": "file:../components/button",
-        "@igreen/checkbox": "file:../components/checkbox",
-        "@igreen/input": "file:../components/input",
-        "@igreen/label": "file:../components/label",
-        "@igreen/mode-toggle": "file:../components/mode-toggle",
-        "@igreen/example-card": "file:../components/example-card"
-    },
-    "publishConfig": {
-        "access": "public",
-        "registry": "http://localhost:4873"
-    }
+  "name": "@igreen/design-system",
+  "version": "1.0.7",
+  "description": "iGreen Design System - Complete Package with Auto-Setup",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "postinstall.js"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "postinstall": "node postinstall.js"
+  },
+  "dependencies": {
+    "@igreen/themes": "^1.2.0",
+    "@igreen/utils": "^1.0.0",
+    "@igreen/button": "^1.0.1",
+    "@igreen/checkbox": "^1.0.1",
+    "@igreen/input": "^1.0.1",
+    "@igreen/label": "^1.0.1",
+    "@igreen/example-card": "^2.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
 }

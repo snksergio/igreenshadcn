@@ -1,157 +1,191 @@
+#!/usr/bin/env tsx
 /**
  * Component Validation Script
  * 
- * Validates that all components in components/ui and components/system
- * have corresponding registry JSON files with correct schema.
+ * Valida que todos os componentes em packages/components/ têm:
+ * - package.json correto
+ * - tsconfig.json correto
+ * - src/ com arquivos
+ * - dist/ após build (warning se não tiver)
  */
 
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
 
-const COMPONENTS_UI_PATH = path.join(process.cwd(), 'components/ui');
-const COMPONENTS_SYSTEM_PATH = path.join(process.cwd(), 'components/system');
-const REGISTRY_PATH = path.join(process.cwd(), 'public/registry/components');
+const PACKAGES_ROOT = path.join(process.cwd(), 'packages', 'components')
+const COMPONENT_TYPES = ['shadcn', 'igreen']
 
 interface ValidationError {
-    component: string;
-    type: 'missing_json' | 'missing_schema' | 'missing_target' | 'stale_content';
-    message: string;
+    component: string
+    type: 'missing_package_json' | 'missing_tsconfig' | 'missing_src' | 'invalid_package_json' | 'missing_dist'
+    message: string
+    severity: 'error' | 'warning'
 }
 
-const errors: ValidationError[] = [];
-const warnings: string[] = [];
+const results: ValidationError[] = []
 
-function validateUIComponents() {
-    if (!fs.existsSync(COMPONENTS_UI_PATH)) {
-        console.log('⚠️  Pasta components/ui não encontrada');
-        return;
+function validateComponent(type: string, componentName: string, componentPath: string) {
+    const packageJsonPath = path.join(componentPath, 'package.json')
+    const tsconfigPath = path.join(componentPath, 'tsconfig.json')
+    const srcPath = path.join(componentPath, 'src')
+    const distPath = path.join(componentPath, 'dist')
+
+    // 1. Verificar package.json
+    if (!fs.existsSync(packageJsonPath)) {
+        results.push({
+            component: `${type}/${componentName}`,
+            type: 'missing_package_json',
+            message: 'package.json não encontrado',
+            severity: 'error'
+        })
+        return
     }
 
-    const files = fs.readdirSync(COMPONENTS_UI_PATH).filter(f => f.endsWith('.tsx'));
+    // Validar conteúdo do package.json
+    try {
+        const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'))
 
-    for (const file of files) {
-        const name = file.replace('.tsx', '');
-        const jsonPath = path.join(REGISTRY_PATH, `${name}.json`);
-
-        // Check if JSON exists
-        if (!fs.existsSync(jsonPath)) {
-            errors.push({
-                component: name,
-                type: 'missing_json',
-                message: `Registry JSON não encontrado para ${name}`
-            });
-            continue;
+        if (!packageJson.name) {
+            results.push({
+                component: `${type}/${componentName}`,
+                type: 'invalid_package_json',
+                message: 'package.json sem campo "name"',
+                severity: 'error'
+            })
         }
 
-        // Validate JSON structure
-        try {
-            const json = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
-
-            if (!json.$schema) {
-                errors.push({
-                    component: name,
-                    type: 'missing_schema',
-                    message: `${name}.json sem $schema`
-                });
-            }
-
-            if (!json.files?.[0]?.target) {
-                errors.push({
-                    component: name,
-                    type: 'missing_target',
-                    message: `${name}.json sem target nos arquivos`
-                });
-            }
-
-            // Check if content is up to date
-            const sourceContent = fs.readFileSync(path.join(COMPONENTS_UI_PATH, file), 'utf-8');
-            const jsonContent = json.files?.[0]?.content || '';
-
-            if (sourceContent.trim() !== jsonContent.trim().replace(/\r\n/g, '\n').replace(/\r/g, '\n')) {
-                warnings.push(`${name}: Conteúdo pode estar desatualizado (rode build:components)`);
-            }
-        } catch (e) {
-            errors.push({
-                component: name,
-                type: 'missing_json',
-                message: `Erro ao ler ${name}.json: ${e}`
-            });
+        if (!packageJson.main || !packageJson.types) {
+            results.push({
+                component: `${type}/${componentName}`,
+                type: 'invalid_package_json',
+                message: 'package.json sem campos "main" ou "types"',
+                severity: 'error'
+            })
         }
-    }
-}
 
-function validateSystemComponents() {
-    if (!fs.existsSync(COMPONENTS_SYSTEM_PATH)) {
-        console.log('⚠️  Pasta components/system não encontrada');
-        return;
+        if (!packageJson.version) {
+            results.push({
+                component: `${type}/${componentName}`,
+                type: 'invalid_package_json',
+                message: 'package.json sem campo "version"',
+                severity: 'error'
+            })
+        }
+    } catch (e) {
+        results.push({
+            component: `${type}/${componentName}`,
+            type: 'invalid_package_json',
+            message: `package.json inválido: ${e}`,
+            severity: 'error'
+        })
     }
 
-    const dirs = fs.readdirSync(COMPONENTS_SYSTEM_PATH).filter(f =>
-        fs.statSync(path.join(COMPONENTS_SYSTEM_PATH, f)).isDirectory()
-    );
+    // 2. Verificar tsconfig.json
+    if (!fs.existsSync(tsconfigPath)) {
+        results.push({
+            component: `${type}/${componentName}`,
+            type: 'missing_tsconfig',
+            message: 'tsconfig.json não encontrado',
+            severity: 'error'
+        })
+    }
 
-    for (const dir of dirs) {
-        const jsonPath = path.join(REGISTRY_PATH, `${dir}.json`);
-
-        if (!fs.existsSync(jsonPath)) {
-            errors.push({
-                component: dir,
-                type: 'missing_json',
-                message: `Registry JSON não encontrado para ${dir}`
-            });
-            continue;
+    // 3. Verificar src/
+    if (!fs.existsSync(srcPath)) {
+        results.push({
+            component: `${type}/${componentName}`,
+            type: 'missing_src',
+            message: 'Pasta src/ não encontrada',
+            severity: 'error'
+        })
+    } else {
+        // Verificar se tem arquivos
+        const srcFiles = fs.readdirSync(srcPath).filter(f => f.endsWith('.ts') || f.endsWith('.tsx'))
+        if (srcFiles.length === 0) {
+            results.push({
+                component: `${type}/${componentName}`,
+                type: 'missing_src',
+                message: 'Pasta src/ vazia (sem arquivos .ts/.tsx)',
+                severity: 'error'
+            })
         }
+    }
 
-        try {
-            const json = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
-
-            if (!json.$schema) {
-                errors.push({
-                    component: dir,
-                    type: 'missing_schema',
-                    message: `${dir}.json sem $schema`
-                });
-            }
-
-            // Check all files have targets
-            for (const file of json.files || []) {
-                if (!file.target) {
-                    errors.push({
-                        component: dir,
-                        type: 'missing_target',
-                        message: `${dir}.json: arquivo ${file.path} sem target`
-                    });
-                }
-            }
-        } catch (e) {
-            errors.push({
-                component: dir,
-                type: 'missing_json',
-                message: `Erro ao ler ${dir}.json: ${e}`
-            });
-        }
+    // 4. Verificar dist/ (warning, não erro)
+    if (!fs.existsSync(distPath)) {
+        results.push({
+            component: `${type}/${componentName}`,
+            type: 'missing_dist',
+            message: 'Pasta dist/ não encontrada (rode npm run build)',
+            severity: 'warning'
+        })
     }
 }
 
-// Run validation
-console.log('\n🔍 Validando componentes...\n');
+function validateAllComponents() {
+    console.log('🔍 Validando componentes em packages/components/\n')
 
-validateUIComponents();
-validateSystemComponents();
+    if (!fs.existsSync(PACKAGES_ROOT)) {
+        console.error('❌ Pasta packages/components/ não encontrada')
+        process.exit(1)
+    }
 
-// Report results
-if (warnings.length > 0) {
-    console.log('⚠️  Avisos:');
-    warnings.forEach(w => console.log(`   - ${w}`));
-    console.log('');
+    let totalComponents = 0
+
+    for (const type of COMPONENT_TYPES) {
+        const typePath = path.join(PACKAGES_ROOT, type)
+
+        if (!fs.existsSync(typePath)) {
+            console.log(`⚠️  Pasta ${type}/ não encontrada, pulando...`)
+            continue
+        }
+
+        const components = fs.readdirSync(typePath).filter(item => {
+            const itemPath = path.join(typePath, item)
+            return fs.statSync(itemPath).isDirectory()
+        })
+
+        console.log(`📦 ${type}/: ${components.length} componentes`)
+
+        for (const component of components) {
+            const componentPath = path.join(typePath, component)
+            validateComponent(type, component, componentPath)
+            totalComponents++
+        }
+    }
+
+    // Relatório
+    console.log('\n' + '='.repeat(50))
+    console.log('📊 Validation Report')
+    console.log('='.repeat(50))
+
+    const errors = results.filter(r => r.severity === 'error')
+    const warnings = results.filter(r => r.severity === 'warning')
+
+    console.log(`✅ Total de componentes: ${totalComponents}`)
+    console.log(`❌ Erros: ${errors.length}`)
+    console.log(`⚠️  Warnings: ${warnings.length}`)
+    console.log('='.repeat(50) + '\n')
+
+    if (warnings.length > 0) {
+        console.log('⚠️  Warnings:')
+        warnings.forEach(w => {
+            console.log(`   - [${w.component}] ${w.message}`)
+        })
+        console.log('')
+    }
+
+    if (errors.length > 0) {
+        console.log('❌ Erros encontrados:')
+        errors.forEach(e => {
+            console.log(`   - [${e.component}] ${e.message}`)
+        })
+        console.log('\n💡 Dica: Verifique a estrutura dos pacotes em packages/components/\n')
+        process.exit(1)
+    }
+
+    console.log('✅ Todos os componentes validados com sucesso!\n')
+    process.exit(0)
 }
 
-if (errors.length > 0) {
-    console.log('❌ Erros encontrados:');
-    errors.forEach(e => console.log(`   - [${e.type}] ${e.message}`));
-    console.log(`\n💡 Dica: Rode "npm run build:components" para regenerar o registry.\n`);
-    process.exit(1);
-} else {
-    console.log('✅ Todos os componentes validados com sucesso!\n');
-    process.exit(0);
-}
+validateAllComponents()

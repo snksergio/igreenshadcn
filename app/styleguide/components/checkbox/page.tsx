@@ -2,9 +2,9 @@
 
 import { ExternalLink } from "lucide-react"
 
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/devcomponents/shadcn/checkbox"
+import { Label } from "@/devcomponents/shadcn/label"
+import { Button } from "@/devcomponents/shadcn/button"
 
 // Componente para exibir código da prop
 function PropLabel({ children }: { children: React.ReactNode }) {
@@ -16,11 +16,11 @@ function PropLabel({ children }: { children: React.ReactNode }) {
 }
 
 // Componente wrapper para cada exemplo
-function ExampleCard({ 
-  title, 
+function ExampleCard({
+  title,
   children,
   code
-}: { 
+}: {
   title: string
   children: React.ReactNode
   code?: string
@@ -43,14 +43,14 @@ function ExampleCard({
 }
 
 // Seção wrapper
-function Section({ 
-  title, 
-  description, 
-  children 
-}: { 
+function Section({
+  title,
+  description,
+  children
+}: {
   title: string
   description: string
-  children: React.ReactNode 
+  children: React.ReactNode
 }) {
   return (
     <section className="space-y-4">
@@ -80,18 +80,18 @@ export default function CheckboxPage() {
           Um controle que permite ao usuário alternar entre marcado e desmarcado.
         </p>
         <div className="mt-4 flex flex-wrap gap-4">
-          <a 
-            href="https://ui.shadcn.com/docs/components/checkbox" 
-            target="_blank" 
+          <a
+            href="https://ui.shadcn.com/docs/components/checkbox"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-sm text-fg-primary underline-offset-4 hover:underline"
           >
             Documentação Shadcn UI
             <ExternalLink className="size-3" />
           </a>
-          <a 
-            href="https://www.radix-ui.com/primitives/docs/components/checkbox" 
-            target="_blank" 
+          <a
+            href="https://www.radix-ui.com/primitives/docs/components/checkbox"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-sm text-fg-primary underline-offset-4 hover:underline"
           >
@@ -134,8 +134,8 @@ export default function CheckboxPage() {
       </div>
 
       {/* Basic Usage */}
-      <Section 
-        title="Uso Básico" 
+      <Section
+        title="Uso Básico"
         description="Exemplos básicos do componente Checkbox."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -170,8 +170,8 @@ export default function CheckboxPage() {
       </Section>
 
       {/* With Label and Description */}
-      <Section 
-        title="Com Label e Descrição" 
+      <Section
+        title="Com Label e Descrição"
         description="Checkboxes com labels e textos de descrição."
       >
         <div className="grid gap-4 lg:grid-cols-2">
@@ -202,13 +202,13 @@ export default function CheckboxPage() {
       </Section>
 
       {/* Card Style Checkbox */}
-      <Section 
-        title="Estilo Card" 
+      <Section
+        title="Estilo Card"
         description="Checkboxes dentro de cards interativos."
       >
         <div className="grid gap-4 lg:grid-cols-2">
           <ExampleCard title="Card Selecionável (Brand)" code="<Label className='hover:bg-accent/50 ... has-[[aria-checked=true]]:border-primary'>">
-            <Label 
+            <Label
               className="flex items-start gap-3 rounded-lg border p-4 cursor-pointer hover:bg-accent/50 has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-bg-primary-subtle"
             >
               <Checkbox
@@ -228,7 +228,7 @@ export default function CheckboxPage() {
           </ExampleCard>
 
           <ExampleCard title="Card Selecionável (Custom Blue)" code="data-[state=checked]:bg-blue-600">
-            <Label 
+            <Label
               className="flex items-start gap-3 rounded-lg border p-4 cursor-pointer hover:bg-accent/50 has-[[aria-checked=true]]:border-blue-600 has-[[aria-checked=true]]:bg-blue-50 dark:has-[[aria-checked=true]]:border-blue-900 dark:has-[[aria-checked=true]]:bg-blue-950"
             >
               <Checkbox
@@ -248,7 +248,7 @@ export default function CheckboxPage() {
           </ExampleCard>
 
           <ExampleCard title="Card Desabilitado" code="<Checkbox disabled />">
-            <Label 
+            <Label
               className="flex items-start gap-3 rounded-lg border p-4 cursor-not-allowed opacity-60 bg-muted/30"
             >
               <Checkbox
@@ -268,7 +268,7 @@ export default function CheckboxPage() {
           </ExampleCard>
 
           <ExampleCard title="Card Unchecked" code="hover:bg-accent/50">
-            <Label 
+            <Label
               className="flex items-start gap-3 rounded-lg border p-4 cursor-pointer hover:bg-accent/50 has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-bg-primary-subtle"
             >
               <Checkbox
@@ -289,8 +289,8 @@ export default function CheckboxPage() {
       </Section>
 
       {/* Checkbox Group */}
-      <Section 
-        title="Grupo de Checkboxes" 
+      <Section
+        title="Grupo de Checkboxes"
         description="Múltiplos checkboxes agrupados."
       >
         <div className="grid gap-4 lg:grid-cols-2">
@@ -339,8 +339,8 @@ export default function CheckboxPage() {
       </Section>
 
       {/* Practical Patterns */}
-      <Section 
-        title="Padrões de Uso" 
+      <Section
+        title="Padrões de Uso"
         description="Exemplos práticos de uso do Checkbox em contextos reais."
       >
         <div className="grid gap-6 lg:grid-cols-2">
@@ -350,9 +350,9 @@ export default function CheckboxPage() {
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email-reg">Email</Label>
-                <input 
-                  type="email" 
-                  id="email-reg" 
+                <input
+                  type="email"
+                  id="email-reg"
                   placeholder="seu@email.com"
                   className="flex h-9 w-full rounded-lg border border-input bg-background px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:border-ring"
                 />
@@ -483,8 +483,8 @@ export default function CheckboxPage() {
       </Section>
 
       {/* API Reference */}
-      <Section 
-        title="Referência de API" 
+      <Section
+        title="Referência de API"
         description="Props disponíveis para o componente Checkbox."
       >
         <div className="overflow-x-auto">
@@ -570,8 +570,8 @@ export default function CheckboxPage() {
       </Section>
 
       {/* Accessibility */}
-      <Section 
-        title="Acessibilidade" 
+      <Section
+        title="Acessibilidade"
         description="Boas práticas de acessibilidade para checkboxes."
       >
         <div className="rounded-lg border border-border bg-card p-6">

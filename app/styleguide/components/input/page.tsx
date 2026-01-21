@@ -1,4 +1,4 @@
-import { 
+import {
   ExternalLink,
   Mail,
   Lock,
@@ -12,9 +12,9 @@ import {
   DollarSign
 } from "lucide-react"
 
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
+import { Input } from "@/devcomponents/shadcn/input"
+import { Label } from "@/devcomponents/shadcn/label"
+import { Button } from "@/devcomponents/shadcn/button"
 
 // Componente para exibir código da prop
 function PropLabel({ children }: { children: React.ReactNode }) {
@@ -26,11 +26,11 @@ function PropLabel({ children }: { children: React.ReactNode }) {
 }
 
 // Componente wrapper para cada exemplo
-function ExampleCard({ 
-  title, 
+function ExampleCard({
+  title,
   children,
   code
-}: { 
+}: {
   title: string
   children: React.ReactNode
   code?: string
@@ -53,14 +53,14 @@ function ExampleCard({
 }
 
 // Seção wrapper
-function Section({ 
-  title, 
-  description, 
-  children 
-}: { 
+function Section({
+  title,
+  description,
+  children
+}: {
   title: string
   description: string
-  children: React.ReactNode 
+  children: React.ReactNode
 }) {
   return (
     <section className="space-y-4">
@@ -90,9 +90,9 @@ export default function InputPage() {
           Exibe um campo de entrada de formulário ou um componente que parece um campo de entrada.
         </p>
         <div className="mt-4 flex flex-wrap gap-4">
-          <a 
-            href="https://ui.shadcn.com/docs/components/input" 
-            target="_blank" 
+          <a
+            href="https://ui.shadcn.com/docs/components/input"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-sm text-fg-primary underline-offset-4 hover:underline"
           >
@@ -136,8 +136,8 @@ export default function InputPage() {
       </div>
 
       {/* Sizes Showcase */}
-      <Section 
-        title="Tamanhos" 
+      <Section
+        title="Tamanhos"
         description="Todos os tamanhos disponíveis para o Input, usando tokens --h-formcontrol-*."
       >
         <div className="rounded-lg border border-border bg-card p-6">
@@ -212,8 +212,8 @@ export default function InputPage() {
       </Section>
 
       {/* Default Examples */}
-      <Section 
-        title="Exemplos Básicos" 
+      <Section
+        title="Exemplos Básicos"
         description="Variações básicas do componente Input."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -244,8 +244,8 @@ export default function InputPage() {
       </Section>
 
       {/* With Label */}
-      <Section 
-        title="Com Label" 
+      <Section
+        title="Com Label"
         description="Inputs com labels para melhor acessibilidade."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -273,8 +273,8 @@ export default function InputPage() {
       </Section>
 
       {/* States */}
-      <Section 
-        title="Estados" 
+      <Section
+        title="Estados"
         description="Diferentes estados do componente Input."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -305,8 +305,8 @@ export default function InputPage() {
       </Section>
 
       {/* File Input */}
-      <Section 
-        title="File Input" 
+      <Section
+        title="File Input"
         description="Input para upload de arquivos."
       >
         <div className="grid gap-4 sm:grid-cols-2">
@@ -328,8 +328,8 @@ export default function InputPage() {
       </Section>
 
       {/* With Button */}
-      <Section 
-        title="Com Button" 
+      <Section
+        title="Com Button"
         description="Combinações de Input com Button para ações."
       >
         <div className="grid gap-4 sm:grid-cols-2">
@@ -353,8 +353,8 @@ export default function InputPage() {
       </Section>
 
       {/* Input Patterns - Common Use Cases */}
-      <Section 
-        title="Padrões de Uso" 
+      <Section
+        title="Padrões de Uso"
         description="Exemplos práticos de uso do Input em contextos reais."
       >
         <div className="grid gap-6 lg:grid-cols-2">
@@ -440,8 +440,8 @@ export default function InputPage() {
       </Section>
 
       {/* Input Types Matrix */}
-      <Section 
-        title="Tipos de Input" 
+      <Section
+        title="Tipos de Input"
         description="Todos os tipos de input HTML suportados."
       >
         <div className="overflow-x-auto">
@@ -567,8 +567,8 @@ export default function InputPage() {
       </Section>
 
       {/* Accessibility */}
-      <Section 
-        title="Acessibilidade" 
+      <Section
+        title="Acessibilidade"
         description="Boas práticas de acessibilidade para inputs."
       >
         <div className="rounded-lg border border-border bg-card p-6">
@@ -588,9 +588,9 @@ export default function InputPage() {
               <div className="space-y-4">
                 <div className="grid w-full items-center gap-2">
                   <Label htmlFor="accessible-email">Email</Label>
-                  <Input 
-                    type="email" 
-                    id="accessible-email" 
+                  <Input
+                    type="email"
+                    id="accessible-email"
                     placeholder="exemplo@email.com"
                     aria-describedby="email-hint"
                   />

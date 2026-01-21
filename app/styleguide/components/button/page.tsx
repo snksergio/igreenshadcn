@@ -1,7 +1,7 @@
-import { 
-  Mail, 
-  ChevronRight, 
-  Download, 
+import {
+  Mail,
+  ChevronRight,
+  Download,
   Plus,
   Trash2,
   ExternalLink,
@@ -11,7 +11,7 @@ import {
   X
 } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/devcomponents/shadcn/button"
 
 // Componente para exibir código da prop
 function PropLabel({ children }: { children: React.ReactNode }) {
@@ -23,11 +23,11 @@ function PropLabel({ children }: { children: React.ReactNode }) {
 }
 
 // Componente wrapper para cada exemplo
-function ExampleCard({ 
-  title, 
+function ExampleCard({
+  title,
   children,
   code
-}: { 
+}: {
   title: string
   children: React.ReactNode
   code?: string
@@ -50,14 +50,14 @@ function ExampleCard({
 }
 
 // Seção wrapper
-function Section({ 
-  title, 
-  description, 
-  children 
-}: { 
+function Section({
+  title,
+  description,
+  children
+}: {
   title: string
   description: string
-  children: React.ReactNode 
+  children: React.ReactNode
 }) {
   return (
     <section className="space-y-4">
@@ -87,9 +87,9 @@ export default function ButtonPage() {
           Exibe um botão ou um componente que parece um botão.
         </p>
         <div className="mt-4 flex flex-wrap gap-4">
-          <a 
-            href="https://ui.shadcn.com/docs/components/button" 
-            target="_blank" 
+          <a
+            href="https://ui.shadcn.com/docs/components/button"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-sm text-fg-primary underline-offset-4 hover:underline"
           >
@@ -130,8 +130,8 @@ export default function ButtonPage() {
       </div>
 
       {/* Variants Showcase */}
-      <Section 
-        title="Variants" 
+      <Section
+        title="Variants"
         description="Todas as variantes de estilo disponíveis para o Button."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -173,8 +173,8 @@ export default function ButtonPage() {
       </Section>
 
       {/* Sizes Showcase */}
-      <Section 
-        title="Sizes" 
+      <Section
+        title="Sizes"
         description="Todos os tamanhos disponíveis para o Button, usando tokens --h-formcontrol-*."
       >
         {/* Text Buttons */}
@@ -253,8 +253,8 @@ export default function ButtonPage() {
       </Section>
 
       {/* With Icons */}
-      <Section 
-        title="With Icons" 
+      <Section
+        title="With Icons"
         description="Botões com ícones para melhorar a comunicação visual."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -303,8 +303,8 @@ export default function ButtonPage() {
       </Section>
 
       {/* States */}
-      <Section 
-        title="States" 
+      <Section
+        title="States"
         description="Estados interativos e variações do Button."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -334,8 +334,8 @@ export default function ButtonPage() {
       </Section>
 
       {/* Visual Comparison - Gradient & Shadow */}
-      <Section 
-        title="Efeitos Visuais" 
+      <Section
+        title="Efeitos Visuais"
         description="Comparação dos efeitos de gradient e shadow nos botões Primary, Destructive e Success."
       >
         <div className="rounded-lg border border-border bg-card p-6">
@@ -384,8 +384,8 @@ export default function ButtonPage() {
       </Section>
 
       {/* All Variants × All Sizes Matrix */}
-      <Section 
-        title="Variants × Sizes Matrix" 
+      <Section
+        title="Variants × Sizes Matrix"
         description="Matriz completa combinando todas as variantes com todos os tamanhos."
       >
         <div className="overflow-x-auto">
@@ -547,8 +547,8 @@ export default function ButtonPage() {
       </Section>
 
       {/* Usage Examples */}
-      <Section 
-        title="Usage Examples" 
+      <Section
+        title="Usage Examples"
         description="Exemplos práticos de uso do Button em contextos reais."
       >
         <div className="grid gap-6 lg:grid-cols-2">

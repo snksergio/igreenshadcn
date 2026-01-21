@@ -1,17 +1,14 @@
 /**
- * iGreen Theme - Entry Point
+ * IGREEN Theme - Complete Bundle
  * 
- * This file imports all theme modules in the correct order.
- * 
- * Structure:
- * 1. Primitives: Raw color scales, base values
+ * This file contains:
+ * 1. Primitives: Raw color scales, typography, spacing
  * 2. Semantic: Contextual tokens that reference primitives
  * 3. Bridge: Shadcn/UI variable mappings
  * 
- * Import this file in your globals.css before Tailwind.
+ * Import this single file in your globals.css
  */
 
-/* Primitives - Foundation layer */
 /**
  * Primitives - Index
  * 
@@ -19,12 +16,354 @@
  * Import order matters for CSS variable resolution.
  */
 
-@import "./colors.css";
-@import "./typography.css";
-@import "./spacing.css";
+/**
+ * Primitives - Colors
+ * 
+ * Raw color scales in OKLCH format.
+ * These are the foundation of the color system.
+ * 
+ * Format: oklch(L C H)
+ * - L: Lightness (0-1)
+ * - C: Chroma (0-0.4)
+ * - H: Hue (0-360)
+ * 
+ * Scales:
+ * - Brand (Green): Primary brand color
+ * - Neutral (Grey): UI backgrounds, borders, text
+ * - Feedback: Success, Warning, Critical, Info
+ */
+
+:root {
+  /* ============================================
+     BASE COLORS
+     ============================================ */
+  --base-static-black: oklch(0 0 0);
+  --base-static-white: oklch(1 0 0);
+  --base-transparent: transparent;
+
+  /* ============================================
+     BRAND SCALE (Green)
+     Primary brand color - Hue: 155
+     ============================================ */
+
+  /**
+   * @token brand-50
+   * @description Tom mais claro da marca (tint).
+   * @usage Backgrounds sutis, hover de elementos claros.
+   */
+  --brand-50: oklch(0.97 0.02 155);
+  --brand-100: oklch(0.95 0.03 155);
+  --brand-200: oklch(0.88 0.07 155);
+  --brand-300: oklch(0.79 0.11 155);
+  --brand-400: oklch(0.70 0.14 155);
+
+  /**
+   * @token brand-500
+   * @description Cor principal da marca.
+   * @usage Botões primários, links ativos, bordas de destaque.
+   */
+  --brand-500: oklch(0.62 0.16 155);
+  --brand-600: oklch(0.52 0.15 158);
+  --brand-700: oklch(0.46 0.14 155);
+  --brand-800: oklch(0.37 0.11 155);
+  --brand-900: oklch(0.27 0.08 155);
+  --brand-950: oklch(0.16 0.05 155);
+
+  /* Brand Alpha Variants */
+  --brand-alpha-5: oklch(0.52 0.15 158 / 0.05);
+  --brand-alpha-10: oklch(0.52 0.15 158 / 0.10);
+  --brand-alpha-15: oklch(0.52 0.15 158 / 0.15);
+  --brand-alpha-20: oklch(0.52 0.15 158 / 0.20);
+  --brand-alpha-25: oklch(0.52 0.15 158 / 0.25);
+  --brand-alpha-30: oklch(0.52 0.15 158 / 0.30);
+  --brand-alpha-50: oklch(0.52 0.15 158 / 0.50);
+
+  /* ============================================
+     NEUTRAL SCALE (Grey)
+     UI backgrounds, borders, text - Hue: 265
+     ============================================ */
+  --neutral-0: oklch(1 0 0);
+
+  /**
+   * @token neutral-50
+   * @description Cinza muito claro, quase branco.
+   * @usage Backgrounds de página, áreas secundárias.
+   */
+  --neutral-50: oklch(0.985 0.002 265);
+  --neutral-100: oklch(0.97 0.003 265);
+  --neutral-200: oklch(0.92 0.004 265);
+  --neutral-300: oklch(0.87 0.005 265);
+  --neutral-400: oklch(0.79 0.006 265);
+
+  /**
+   * @token neutral-500
+   * @description Cinza médio.
+   * @usage Textos secundários (muted), ícones desabilitados.
+   */
+  --neutral-500: oklch(0.69 0.007 265);
+  --neutral-600: oklch(0.58 0.008 265);
+  --neutral-700: oklch(0.48 0.008 265);
+  --neutral-800: oklch(0.35 0.008 265);
+  --neutral-900: oklch(0.25 0.006 265);
+  --neutral-950: oklch(0.15 0.005 265);
+
+  /* Neutral Alpha Variants */
+  --neutral-alpha-5: oklch(0.15 0.005 265 / 0.05);
+  --neutral-alpha-10: oklch(0.15 0.005 265 / 0.10);
+  --neutral-alpha-15: oklch(0.15 0.005 265 / 0.15);
+  --neutral-alpha-20: oklch(0.15 0.005 265 / 0.20);
+  --neutral-alpha-25: oklch(0.15 0.005 265 / 0.25);
+  --neutral-alpha-30: oklch(0.15 0.005 265 / 0.30);
+  --neutral-alpha-50: oklch(0.15 0.005 265 / 0.50);
+
+  /* ============================================
+     FEEDBACK - WARNING (Orange)
+     Hue: 40-55
+     ============================================ */
+  --warning-50: oklch(0.96 0.04 55);
+  --warning-500: oklch(0.65 0.20 40);
+  --warning-600: oklch(0.55 0.18 40);
+  --warning-800: oklch(0.35 0.08 40);
+  --warning-alpha-20: oklch(0.65 0.20 40 / 0.20);
+
+  /* ============================================
+     FEEDBACK - SUCCESS (Green)
+     Hue: 155-158
+     ============================================ */
+  --success-50: oklch(0.97 0.02 155);
+  --success-500: oklch(0.52 0.15 158);
+  --success-600: oklch(0.46 0.14 155);
+  --success-800: oklch(0.37 0.11 155);
+  --success-alpha-20: oklch(0.52 0.15 158 / 0.20);
+
+  /* ============================================
+     FEEDBACK - CRITICAL (Red)
+     Hue: 15-25
+     ============================================ */
+  --critical-50: oklch(0.96 0.03 15);
+  --critical-500: oklch(0.55 0.22 25);
+  --critical-600: oklch(0.45 0.20 25);
+  --critical-800: oklch(0.30 0.08 25);
+  --critical-alpha-20: oklch(0.55 0.22 25 / 0.20);
+
+  /* ============================================
+     FEEDBACK - INFO (Blue)
+     Hue: 240-250
+     ============================================ */
+  --info-50: oklch(0.96 0.03 240);
+  --info-500: oklch(0.60 0.18 250);
+  --info-600: oklch(0.50 0.16 250);
+  --info-800: oklch(0.32 0.08 250);
+  --info-alpha-20: oklch(0.60 0.18 250 / 0.20);
+}
+
+/* ============================================
+   DARK MODE OVERRIDES
+   ============================================ */
+.dark {
+  /* Neutral Scale - Inverted */
+  --neutral-0: oklch(0.15 0.005 265);
+  --neutral-50: oklch(0.25 0.006 265);
+  --neutral-100: oklch(0.35 0.008 265);
+  --neutral-200: oklch(0.48 0.008 265);
+  --neutral-300: oklch(0.58 0.008 265);
+  --neutral-400: oklch(0.69 0.007 265);
+  --neutral-500: oklch(0.79 0.006 265);
+  --neutral-600: oklch(0.87 0.005 265);
+  --neutral-700: oklch(0.92 0.004 265);
+  --neutral-800: oklch(0.97 0.003 265);
+  --neutral-900: oklch(0.985 0.002 265);
+  --neutral-950: oklch(1 0 0);
+
+  /* Neutral Alpha - Light base for dark mode */
+  --neutral-alpha-5: oklch(1 0 0 / 0.05);
+  --neutral-alpha-10: oklch(1 0 0 / 0.10);
+  --neutral-alpha-15: oklch(1 0 0 / 0.15);
+  --neutral-alpha-20: oklch(1 0 0 / 0.20);
+  --neutral-alpha-25: oklch(1 0 0 / 0.25);
+  --neutral-alpha-30: oklch(1 0 0 / 0.30);
+  --neutral-alpha-50: oklch(1 0 0 / 0.50);
+
+  /* Brand Scale - Adjusted for dark backgrounds */
+  --brand-50: oklch(0.16 0.05 155);
+  --brand-100: oklch(0.27 0.08 155);
+  --brand-200: oklch(0.37 0.11 155);
+  --brand-300: oklch(0.46 0.14 155);
+  --brand-400: oklch(0.52 0.15 158);
+  --brand-500: oklch(0.62 0.16 155);
+  --brand-600: oklch(0.70 0.14 155);
+  --brand-700: oklch(0.79 0.11 155);
+  --brand-800: oklch(0.88 0.07 155);
+  --brand-900: oklch(0.95 0.03 155);
+  --brand-950: oklch(0.97 0.02 155);
+
+  /* Brand Alpha - Lighter for dark mode */
+  --brand-alpha-5: oklch(0.70 0.14 155 / 0.05);
+  --brand-alpha-10: oklch(0.70 0.14 155 / 0.10);
+  --brand-alpha-15: oklch(0.70 0.14 155 / 0.15);
+  --brand-alpha-20: oklch(0.70 0.14 155 / 0.20);
+  --brand-alpha-25: oklch(0.70 0.14 155 / 0.25);
+  --brand-alpha-30: oklch(0.70 0.14 155 / 0.30);
+  --brand-alpha-50: oklch(0.70 0.14 155 / 0.50);
+
+  /* Warning - Brighter for dark backgrounds */
+  --warning-50: oklch(0.35 0.08 40);
+  --warning-500: oklch(0.72 0.18 40);
+  --warning-600: oklch(0.78 0.16 40);
+  --warning-800: oklch(0.92 0.06 55);
+  --warning-alpha-20: oklch(0.72 0.18 40 / 0.20);
+
+  /* Success - Brighter for dark backgrounds */
+  --success-50: oklch(0.37 0.11 155);
+  --success-500: oklch(0.62 0.16 155);
+  --success-600: oklch(0.70 0.14 155);
+  --success-800: oklch(0.88 0.07 155);
+  --success-alpha-20: oklch(0.62 0.16 155 / 0.20);
+
+  /* Critical - Brighter for dark backgrounds */
+  --critical-50: oklch(0.30 0.08 25);
+  --critical-500: oklch(0.65 0.20 25);
+  --critical-600: oklch(0.72 0.18 25);
+  --critical-800: oklch(0.92 0.06 15);
+  --critical-alpha-20: oklch(0.65 0.20 25 / 0.20);
+
+  /* Info - Brighter for dark backgrounds */
+  --info-50: oklch(0.32 0.08 250);
+  --info-500: oklch(0.68 0.16 250);
+  --info-600: oklch(0.75 0.14 250);
+  --info-800: oklch(0.92 0.04 240);
+  --info-alpha-20: oklch(0.68 0.16 250 / 0.20);
+}
+/**
+ * Primitives - Typography
+ * 
+ * Proportional typography system based on --typography-base.
+ * All font sizes are calculated as multipliers of the base,
+ * similar to how --spacing works for dimensions.
+ * 
+ * Change --typography-base to scale all typography proportionally.
+ * 
+ * NOTE: Variables use --typography-* prefix to avoid conflicts
+ * with Tailwind's --font-size-* variables in @theme.
+ */
+
+:root {
+  /* ============================================
+     BASE FONT SIZE
+     
+     All other font sizes are calculated from this value.
+     Change this to scale entire typography system.
+     
+     Default: 1rem (16px)
+     Compact: 0.875rem (14px)
+     Large: 1.125rem (18px)
+     ============================================ */
+  --typography-base: 1rem; /* 16px */
+
+  /* ============================================
+     FONT SIZE SCALE
+     
+     Calculated proportionally from --typography-base.
+     Maintains Tailwind's default ratios.
+     
+     ┌───────────┬────────────┬─────────┬─────────────────┐
+     │ Token     │ Multiplier │ Default │ If base = 18px  │
+     ├───────────┼────────────┼─────────┼─────────────────┤
+     │ text-2xs  │ × 0.6875   │ 11px    │ 12.375px        │
+     │ text-xs   │ × 0.75     │ 12px    │ 13.5px          │
+     │ text-sm   │ × 0.875    │ 14px    │ 15.75px         │
+     │ text-base │ × 1.0      │ 16px    │ 18px            │
+     │ text-lg   │ × 1.125    │ 18px    │ 20.25px         │
+     │ text-xl   │ × 1.25     │ 20px    │ 22.5px          │
+     │ text-2xl  │ × 1.5      │ 24px    │ 27px            │
+     │ text-3xl  │ × 1.875    │ 30px    │ 33.75px         │
+     │ text-4xl  │ × 2.25     │ 36px    │ 40.5px          │
+     │ text-5xl  │ × 3.0      │ 48px    │ 54px            │
+     │ text-6xl  │ × 3.75     │ 60px    │ 67.5px          │
+     │ text-7xl  │ × 4.5      │ 72px    │ 81px            │
+     │ text-8xl  │ × 6.0      │ 96px    │ 108px           │
+     │ text-9xl  │ × 8.0      │ 128px   │ 144px           │
+     └───────────┴────────────┴─────────┴─────────────────┘
+     ============================================ */
+  
+  --typography-2xs:  calc(var(--typography-base) * 0.6875);  /* 11px */
+  --typography-xs:   calc(var(--typography-base) * 0.75);    /* 12px */
+  --typography-sm:   calc(var(--typography-base) * 0.875);   /* 14px */
+  /* --typography-base is defined above */
+  --typography-lg:   calc(var(--typography-base) * 1.125);   /* 18px */
+  --typography-xl:   calc(var(--typography-base) * 1.25);    /* 20px */
+  --typography-2xl:  calc(var(--typography-base) * 1.5);     /* 24px */
+  --typography-3xl:  calc(var(--typography-base) * 1.875);   /* 30px */
+  --typography-4xl:  calc(var(--typography-base) * 2.25);    /* 36px */
+  --typography-5xl:  calc(var(--typography-base) * 3);       /* 48px */
+  --typography-6xl:  calc(var(--typography-base) * 3.75);    /* 60px */
+  --typography-7xl:  calc(var(--typography-base) * 4.5);     /* 72px */
+  --typography-8xl:  calc(var(--typography-base) * 6);       /* 96px */
+  --typography-9xl:  calc(var(--typography-base) * 8);       /* 128px */
+
+  /* ============================================
+     LINE HEIGHTS
+     
+     Paired with font sizes for optimal readability.
+     ============================================ */
+  --typography-leading-none: 1;
+  --typography-leading-tight: 1.25;
+  --typography-leading-snug: 1.375;
+  --typography-leading-normal: 1.5;
+  --typography-leading-relaxed: 1.625;
+  --typography-leading-loose: 2;
+
+  /* ============================================
+     FONT WEIGHTS
+     ============================================ */
+  --typography-weight-thin: 100;
+  --typography-weight-extralight: 200;
+  --typography-weight-light: 300;
+  --typography-weight-normal: 400;
+  --typography-weight-medium: 500;
+  --typography-weight-semibold: 600;
+  --typography-weight-bold: 700;
+  --typography-weight-extrabold: 800;
+  --typography-weight-black: 900;
+
+  /* ============================================
+     LETTER SPACING (Tracking)
+     ============================================ */
+  --typography-tracking-tighter: -0.05em;
+  --typography-tracking-tight: -0.025em;
+  --typography-tracking-normal: 0em;
+  --typography-tracking-wide: 0.025em;
+  --typography-tracking-wider: 0.05em;
+  --typography-tracking-widest: 0.1em;
+}
+
+/**
+ * Primitives - Spacing
+ * 
+ * Base spacing unit and scale for consistent component sizing.
+ * 
+ * The --spacing variable is the foundation for Tailwind v4's spacing system.
+ * Classes like h-8, h-9, p-4, gap-2 all use: calc(var(--spacing) * N)
+ */
+
+:root {
+  /* ============================================
+     BASE SPACING UNIT
+     
+     Used by Tailwind v4 to calculate:
+     - Heights: h-8, h-9, h-10, h-11, h-12...
+     - Widths: w-4, w-8, w-16...
+     - Padding: p-2, p-4, px-6...
+     - Margins: m-2, m-4, my-8...
+     - Gaps: gap-2, gap-4...
+     
+     To create a more compact theme: --spacing: 0.2rem (3.2px)
+     To create a more spacious theme: --spacing: 0.3rem (4.8px)
+     ============================================ */
+  --spacing: 0.25rem; /* 4px - Tailwind default */
+}
 
 
-/* Semantic - Contextual layer */
 /**
  * Semantic - Index
  * 
@@ -32,12 +371,726 @@
  * Import order matters for CSS variable resolution.
  */
 
-@import "./colors.css";
-@import "./effects.css";
-@import "./motion.css";
-@import "./sizing.css";
-@import "./typography.css";
+/**
+ * Semantic - Colors
+ * 
+ * Contextual color tokens that reference primitives.
+ * These provide meaning and intent to the design system.
+ * 
+ * Categories:
+ * - bg-*: Background colors
+ * - fg-*: Foreground/text colors
+ * - border-*: Border colors
+ * - ring-*: Focus ring colors
+ */
+
+:root {
+  /* ============================================
+     BACKGROUND COLORS
+     ============================================ */
+  
+  /* Base Backgrounds */
+  --bg-canvas: var(--neutral-50);
+  --bg-background: var(--neutral-0);
+  --bg-muted: var(--neutral-50);
+  --bg-accent: var(--neutral-100);
+  --bg-fill: var(--neutral-600);
+  --bg-inverse: var(--neutral-950);
+
+  /* Primary Backgrounds */
+  --bg-primary: var(--brand-600);
+  --bg-primary-hover: var(--brand-700);
+  --bg-primary-subtle: var(--brand-50);
+
+  /* Secondary Backgrounds */
+  --bg-secondary: var(--neutral-0);
+  --bg-secondary-hover: var(--neutral-50);
+  --bg-secondary-subtle: var(--neutral-0);
+
+  /* Tertiary Backgrounds */
+  --bg-tertiary: transparent;
+  --bg-tertiary-hover: var(--neutral-50);
+  --bg-tertiary-subtle: transparent;
+
+  /* Feedback Backgrounds */
+  --bg-success: var(--success-500);
+  --bg-success-hover: var(--success-600);
+  --bg-success-subtle: var(--success-50);
+  --bg-success-muted: var(--success-50);
+
+  --bg-warning: var(--warning-500);
+  --bg-warning-hover: var(--warning-600);
+  --bg-warning-subtle: var(--warning-50);
+  --bg-warning-muted: var(--warning-50);
+
+  --bg-critical: var(--critical-500);
+  --bg-critical-hover: var(--critical-600);
+  --bg-critical-subtle: var(--critical-50);
+  --bg-critical-muted: var(--critical-50);
+
+  --bg-info: var(--info-500);
+  --bg-info-hover: var(--info-600);
+  --bg-info-subtle: var(--info-50);
+  --bg-info-muted: var(--info-50);
+
+  /* ============================================
+     FOREGROUND COLORS (Text)
+     ============================================ */
+  
+  /* Base Text Colors */
+  --fg-main: var(--neutral-700);
+  --fg-subtle: var(--neutral-400);
+  --fg-muted: var(--neutral-500);
+  --fg-moderate: var(--neutral-800);
+  --fg-strong: var(--neutral-950);
+
+  /* Primary Text Colors */
+  --fg-primary: var(--brand-600);
+  --fg-on-primary: var(--neutral-0);
+
+  /* Secondary Text Colors */
+  --fg-secondary: var(--neutral-950);
+  --fg-on-secondary: var(--neutral-950);
+
+  /* Tertiary Text Colors */
+  --fg-tertiary: var(--neutral-800);
+  --fg-on-tertiary: var(--neutral-800);
+
+  /* Interactive Text Colors */
+  --fg-interactive: var(--brand-600);
+  --fg-on-inverted: var(--neutral-0);
+  --fg-muted-on-inverted: var(--neutral-300);
+
+  /* Feedback Text Colors */
+  --fg-success: var(--success-500);
+  --fg-on-success: var(--neutral-0);
+
+  --fg-warning: var(--warning-500);
+  --fg-on-warning: var(--neutral-0);
+
+  --fg-critical: var(--critical-500);
+  --fg-on-critical: var(--neutral-0);
+
+  --fg-info: var(--info-500);
+  --fg-on-info: var(--neutral-0);
+
+  /* ============================================
+     BORDER COLORS
+     ============================================ */
+  
+  /* Base Borders */
+  --border-default: var(--neutral-200);
+  --border-muted: var(--neutral-100);
+  --border-strong: var(--neutral-300);
+
+  /* Semantic Borders */
+  --border-primary: var(--brand-600);
+  --border-secondary: var(--neutral-200);
+  --border-inverted: var(--neutral-950);
+
+  /* Feedback Borders */
+  --border-success: var(--success-500);
+  --border-warning: var(--warning-500);
+  --border-critical: var(--critical-500);
+  --border-info: var(--info-500);
+
+  /* ============================================
+     RING COLORS (Focus States)
+     ============================================ */
+  --ring-primary: var(--brand-alpha-50);
+  --ring-secondary: var(--neutral-alpha-20);
+  --ring-success: var(--success-alpha-20);
+  --ring-warning: var(--warning-alpha-20);
+  --ring-critical: var(--critical-alpha-20);
+  --ring-info: var(--info-alpha-20);
+}
+
+/* ============================================
+   DARK MODE OVERRIDES
+   ============================================ */
+.dark {
+  /* Base Backgrounds - Inverted */
+  --bg-canvas: var(--neutral-0);
+  --bg-background: var(--neutral-50);
+  --bg-muted: var(--neutral-100);
+  --bg-accent: var(--neutral-200);
+  --bg-fill: var(--neutral-500);
+  --bg-inverse: var(--neutral-950);
+
+  /* Primary Backgrounds - Use lighter brand tones */
+  --bg-primary: var(--brand-500);
+  --bg-primary-hover: var(--brand-600);
+  --bg-primary-subtle: var(--brand-50);
+
+  /* Secondary Backgrounds */
+  --bg-secondary: var(--neutral-100);
+  --bg-secondary-hover: var(--neutral-200);
+  --bg-secondary-subtle: var(--neutral-50);
+
+  /* Tertiary Backgrounds */
+  --bg-tertiary: transparent;
+  --bg-tertiary-hover: var(--neutral-100);
+  --bg-tertiary-subtle: transparent;
+
+  /* Base Text Colors - Inverted for readability */
+  --fg-main: var(--neutral-950);
+  --fg-subtle: var(--neutral-500);
+  --fg-muted: var(--neutral-400);
+  --fg-moderate: var(--neutral-700);
+  --fg-strong: var(--neutral-950);
+
+  /* Primary Text Colors */
+  --fg-primary: var(--brand-600);
+  --fg-on-primary: var(--neutral-0);
+
+  /* Secondary Text Colors */
+  --fg-secondary: var(--neutral-800);
+  --fg-on-secondary: var(--neutral-950);
+
+  /* Tertiary Text Colors */
+  --fg-tertiary: var(--neutral-600);
+  --fg-on-tertiary: var(--neutral-800);
+
+  /* Interactive Text Colors */
+  --fg-interactive: var(--brand-600);
+  --fg-on-inverted: var(--neutral-0);
+  --fg-muted-on-inverted: var(--neutral-400);
+
+  /* Feedback Text Colors - Brighter variants */
+  --fg-success: var(--success-600);
+  --fg-warning: var(--warning-500);
+  --fg-critical: var(--critical-500);
+  --fg-info: var(--info-500);
+
+  /* Base Borders - Subtle in dark mode */
+  --border-default: var(--neutral-200);
+  --border-muted: var(--neutral-100);
+  --border-strong: var(--neutral-300);
+
+  /* Semantic Borders */
+  --border-primary: var(--brand-500);
+  --border-secondary: var(--neutral-200);
+  --border-inverted: var(--neutral-950);
+}
+
+/**
+ * Semantic - Effects
+ * 
+ * Visual effects, elevation, overlays, and utility tokens.
+ * 
+ * Categories:
+ * - Elevation: Surface levels with associated shadows
+ * - Backdrop: Overlay backgrounds for modals/dialogs
+ * - Icons: Standard icon sizes
+ * - Z-index: Layering scale
+ * - Visual Effects: Shine, gradients
+ */
+
+:root {
+  /* ============================================
+     ELEVATION SYSTEM
+     Surface levels with background + shadow pairs
+     ============================================ */
+  
+  /* Level 0: Base surface (no elevation) */
+  --bg-elevated-0: var(--neutral-0);
+  --shadow-elevated-0: none;
+
+  /* Level 1: Slight elevation (cards, dropdowns) */
+  --bg-elevated-1: var(--neutral-0);
+  --shadow-elevated-1: 0 1px 2px 0 oklch(from var(--neutral-700) l c h / 0.05);
+
+  /* Level 2: Medium elevation (popovers, menus) */
+  --bg-elevated-2: var(--neutral-0);
+  --shadow-elevated-2: 
+    0 1px 3px 0 oklch(from var(--neutral-700) l c h / 0.1),
+    0 1px 2px -1px oklch(from var(--neutral-700) l c h / 0.1);
+
+  /* Level 3: High elevation (modals, dialogs) */
+  --bg-elevated-3: var(--neutral-0);
+  --shadow-elevated-3: 
+    0 4px 6px -1px oklch(from var(--neutral-700) l c h / 0.1),
+    0 2px 4px -2px oklch(from var(--neutral-700) l c h / 0.1);
+
+  /* Level 4: Highest elevation (notifications, toasts) */
+  --bg-elevated-4: var(--neutral-0);
+  --shadow-elevated-4: 
+    0 10px 15px -3px oklch(from var(--neutral-700) l c h / 0.1),
+    0 4px 6px -4px oklch(from var(--neutral-700) l c h / 0.1);
+
+  /* ============================================
+     BACKDROP / OVERLAY
+     For modals, dialogs, drawers
+     ============================================ */
+  --backdrop-default: oklch(0 0 0 / 0.5);
+  --backdrop-light: oklch(0 0 0 / 0.3);
+  --backdrop-dark: oklch(0 0 0 / 0.7);
+  --backdrop-blur: oklch(0 0 0 / 0.3);
+
+  /* ============================================
+     ICON SIZES
+     Consistent icon sizing across components
+     ============================================ */
+  --icon-2xs: 0.625rem;   /* 10px */
+  --icon-xs: 0.75rem;     /* 12px */
+  --icon-sm: 1rem;        /* 16px */
+  --icon-md: 1.25rem;     /* 20px */
+  --icon-lg: 1.5rem;      /* 24px */
+  --icon-xl: 2rem;        /* 32px */
+  --icon-2xl: 2.5rem;     /* 40px */
+
+  /* ============================================
+     Z-INDEX SCALE
+     Layering system for overlays and components
+     ============================================ */
+  --z-base: 0;
+  --z-docked: 10;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* ============================================
+     VISUAL EFFECTS
+     Shine, gradients, and decorative effects
+     ============================================ */
+  
+  /* Inset Shine Effect (inner glow for buttons) */
+  --shadow-inset-shine: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+  --shadow-inset-shine-pressed: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+
+  /* Gradient Shine Effect (top highlight) */
+  --gradient-shine: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%);
+
+  /* ============================================
+     FOCUS RING
+     Padrão de foco para todos os componentes
+     
+     Classes geradas automaticamente pelo @theme em app/globals.css:
+     - ring-focus, ring-focus-sm, ring-focus-lg (para ring)
+     - outline-focus (para outline)
+     
+     Usage:
+     - Botões: outline-focus outline-transparent focus-visible:outline-focus focus-visible:outline-ring/50
+     - Inputs/Checkboxes: focus-visible:ring-focus focus-visible:ring-ring/50
+     ============================================ */
+  
+  /* Largura do ring */
+  --ring-focus-width: 3px;
+  --ring-focus-width-sm: 2px;
+  --ring-focus-width-lg: 4px;
+
+  /* Offset (espaçamento do elemento) */
+  --ring-focus-offset: 2px;
+  --ring-focus-offset-none: 0px;
+
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  --radius: 0.625rem;
+}
 
 
-/* Bridge - Shadcn/UI compatibility */
-@import "./bridge/shadcn.css";
+/* ============================================
+   DARK MODE OVERRIDES
+   ============================================ */
+.dark {
+  /* Elevation backgrounds adjusted for dark mode */
+  --bg-elevated-0: var(--neutral-50);
+  --bg-elevated-1: var(--neutral-100);
+  --bg-elevated-2: var(--neutral-100);
+  --bg-elevated-3: var(--neutral-200);
+  --bg-elevated-4: var(--neutral-200);
+
+  /* Shadows lighter in dark mode */
+  --shadow-elevated-1: 0 1px 2px 0 oklch(0 0 0 / 0.3);
+  --shadow-elevated-2: 
+    0 1px 3px 0 oklch(0 0 0 / 0.4),
+    0 1px 2px -1px oklch(0 0 0 / 0.3);
+  --shadow-elevated-3: 
+    0 4px 6px -1px oklch(0 0 0 / 0.4),
+    0 2px 4px -2px oklch(0 0 0 / 0.3);
+  --shadow-elevated-4: 
+    0 10px 15px -3px oklch(0 0 0 / 0.4),
+    0 4px 6px -4px oklch(0 0 0 / 0.3);
+
+  /* Backdrop slightly lighter in dark mode */
+  --backdrop-default: oklch(0 0 0 / 0.6);
+  --backdrop-light: oklch(0 0 0 / 0.4);
+  --backdrop-dark: oklch(0 0 0 / 0.8);
+}
+
+/**
+ * Semantic - Motion
+ * 
+ * Animation and transition tokens.
+ * Currently using Tailwind's native animation utilities.
+ * 
+ * Add custom tokens here when you need values outside Tailwind's defaults.
+ * 
+ * ============================================
+ * EXAMPLES (uncomment to use)
+ * ============================================
+ * 
+ * :root {
+ *   // Durations
+ *   --duration-instant: 0ms;
+ *   --duration-fast: 100ms;
+ *   --duration-normal: 200ms;
+ *   --duration-slow: 300ms;
+ *   --duration-slower: 500ms;
+ * 
+ *   // Easing functions
+ *   --ease-linear: linear;
+ *   --ease-in: cubic-bezier(0.4, 0, 1, 1);
+ *   --ease-out: cubic-bezier(0, 0, 0.2, 1);
+ *   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+ *   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+ *   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ * 
+ *   // Composed transitions
+ *   --transition-fast: all var(--duration-fast) var(--ease-out);
+ *   --transition-normal: all var(--duration-normal) var(--ease-out);
+ *   --transition-slow: all var(--duration-slow) var(--ease-out);
+ * 
+ *   // Specific transitions
+ *   --transition-colors: color, background-color, border-color var(--duration-normal) var(--ease-out);
+ *   --transition-opacity: opacity var(--duration-normal) var(--ease-out);
+ *   --transition-transform: transform var(--duration-normal) var(--ease-out);
+ *   --transition-shadow: box-shadow var(--duration-normal) var(--ease-out);
+ * }
+ * 
+ * // Keyframes
+ * @keyframes fade-in {
+ *   from { opacity: 0; }
+ *   to { opacity: 1; }
+ * }
+ * 
+ * @keyframes slide-up {
+ *   from { transform: translateY(10px); opacity: 0; }
+ *   to { transform: translateY(0); opacity: 1; }
+ * }
+ * 
+ * @keyframes scale-in {
+ *   from { transform: scale(0.95); opacity: 0; }
+ *   to { transform: scale(1); opacity: 1; }
+ * }
+ */
+
+/* Currently empty - using Tailwind defaults + tailwindcss-animate */
+
+/**
+ * Semantic - Sizing
+ * 
+ * Form control heights and component sizing tokens.
+ * These provide semantic names while maintaining compatibility with Tailwind.
+ * 
+ * Usage:
+ * - Shadcn components: use h-8, h-9, h-10... (native Tailwind)
+ * - Custom components: use h-formcontrol-sm, h-formcontrol-md... (semantic)
+ * 
+ * Both resolve to the same calculated values.
+ */
+
+:root {
+  /* ============================================
+     FORM CONTROL HEIGHTS
+     
+     Semantic tokens that reference the spacing system.
+     Use in custom components for clarity and maintainability.
+     
+     ┌─────────────────┬─────────────┬────────────┬────────┐
+     │ Token           │ Tailwind    │ Multiplier │ Pixels │
+     ├─────────────────┼─────────────┼────────────┼────────┤
+     │ --h-formcontrol-sm  │ h-8     │ × 8        │ 32px   │
+     │ --h-formcontrol-md  │ h-9     │ × 9        │ 36px   │
+     │ --h-formcontrol-lg  │ h-10    │ × 10       │ 40px   │
+     │ --h-formcontrol-xl  │ h-11    │ × 11       │ 44px   │
+     │ --h-formcontrol-2xl │ h-12    │ × 12       │ 48px   │
+     └─────────────────┴─────────────┴────────────┴────────┘
+     
+     To customize:
+     - Change multiplier to shift all sizes proportionally
+     - Or change --spacing to affect all spacing globally
+     ============================================ */
+  
+  /* Small - Compact controls, toolbars */
+  --h-formcontrol-sm: calc(var(--spacing) * 8);   /* 32px = h-8 */
+  
+  /* Medium - Default size for most inputs */
+  --h-formcontrol-md: calc(var(--spacing) * 9);   /* 36px = h-9 */
+  
+  /* Large - Prominent inputs, touch-friendly */
+  --h-formcontrol-lg: calc(var(--spacing) * 10);  /* 40px = h-10 */
+  
+  /* Extra Large - Hero sections, feature inputs */
+  --h-formcontrol-xl: calc(var(--spacing) * 11);  /* 44px = h-11 */
+  
+  /* 2X Large - Maximum size, landing pages */
+  --h-formcontrol-2xl: calc(var(--spacing) * 12); /* 48px = h-12 */
+
+  /* ============================================
+     FORM CONTROL TEXT SIZE
+     
+     Semantic token for text inside form controls.
+     References the proportional typography system.
+     ============================================ */
+  --text-formcontrol: var(--typography-sm); /* 14px - matches text-sm */
+}
+
+/**
+ * Semantic - Typography Styles
+ * 
+ * Typography presets optimized for Dashboard interfaces.
+ * Each style defines: font-size, font-weight, line-height, and recommended color.
+ * 
+ * Usage:
+ * - Apply via utility classes: text-page-title, text-body, text-caption, etc.
+ * - Or reference individual tokens in custom components.
+ * 
+ * These styles consume the proportional font-size system from primitives,
+ * so they scale automatically when --typography-base changes.
+ * 
+ * ┌─────────────────┬─────────┬──────────┬─────────────┬───────────────────────────┐
+ * │ Token           │ Size    │ Weight   │ Color       │ Use Case                  │
+ * ├─────────────────┼─────────┼──────────┼─────────────┼───────────────────────────┤
+ * │ page-title      │ 24px    │ bold     │ fg-strong   │ Page titles               │
+ * │ section-title   │ 16px    │ semibold │ fg-strong   │ Section/card titles       │
+ * │ body-lg         │ 16px    │ regular  │ fg-main     │ Lead text, introductions  │
+ * │ body            │ 14px    │ regular  │ fg-main     │ Default paragraph text    │
+ * │ label           │ 14px    │ medium   │ fg-strong   │ Form labels               │
+ * │ label-sm        │ 12px    │ medium   │ fg-strong   │ Small labels              │
+ * │ table-header    │ 14px    │ medium   │ fg-moderate │ Table column headers      │
+ * │ table-cell      │ 14px    │ regular  │ fg-main     │ Table cell content        │
+ * │ caption         │ 12px    │ regular  │ fg-muted    │ Timestamps, legends       │
+ * │ micro           │ 11px    │ regular  │ fg-muted    │ Descriptions, small badges│
+ * └─────────────────┴─────────┴──────────┴─────────────┴───────────────────────────┘
+ */
+
+:root {
+  /* ============================================
+     PAGE TITLE
+     
+     For main page headings.
+     24px • Bold • fg-strong
+     ============================================ */
+  --text-page-title-size: var(--typography-2xl);
+  --text-page-title-weight: var(--typography-weight-bold);
+  --text-page-title-line-height: var(--typography-leading-tight);
+  --text-page-title-tracking: var(--typography-tracking-tight);
+
+  /* ============================================
+     SECTION TITLE
+     
+     For section and card titles.
+     16px • Semibold • fg-strong
+     ============================================ */
+  --text-section-title-size: var(--typography-base);
+  --text-section-title-weight: var(--typography-weight-semibold);
+  --text-section-title-line-height: var(--typography-leading-snug);
+  --text-section-title-tracking: var(--typography-tracking-normal);
+
+  /* ============================================
+     BODY STYLES
+     
+     For paragraphs and general content.
+     ============================================ */
+
+  /* Body - Default paragraph text (14px • Regular • fg-main) */
+  --text-body-size: var(--typography-sm);
+  --text-body-weight: var(--typography-weight-normal);
+  --text-body-line-height: var(--typography-leading-normal);
+
+  /* Body Large - Lead text (16px • Regular • fg-main) */
+  --text-body-lg-size: var(--typography-base);
+  --text-body-lg-weight: var(--typography-weight-normal);
+  --text-body-lg-line-height: var(--typography-leading-relaxed);
+
+  /* ============================================
+     LABEL STYLES
+     
+     For form labels and UI controls.
+     ============================================ */
+
+  /* Label - Form labels (14px • Medium • fg-strong) */
+  --text-label-size: var(--typography-sm);
+  --text-label-weight: var(--typography-weight-medium);
+  --text-label-line-height: var(--typography-leading-none);
+
+  /* Label Small - Compact labels (12px • Medium • fg-strong) */
+  --text-label-sm-size: var(--typography-xs);
+  --text-label-sm-weight: var(--typography-weight-medium);
+  --text-label-sm-line-height: var(--typography-leading-none);
+
+  /* ============================================
+     TABLE STYLES
+     
+     For data tables and lists.
+     ============================================ */
+
+  /* Table Header (14px • Medium • fg-moderate) */
+  --text-table-header-size: var(--typography-sm);
+  --text-table-header-weight: var(--typography-weight-medium);
+  --text-table-header-line-height: var(--typography-leading-normal);
+
+  /* Table Cell (14px • Regular • fg-main) */
+  --text-table-cell-size: var(--typography-sm);
+  --text-table-cell-weight: var(--typography-weight-normal);
+  --text-table-cell-line-height: var(--typography-leading-normal);
+
+  /* ============================================
+     SUPPORTING STYLES
+     
+     For secondary and de-emphasized content.
+     ============================================ */
+
+  /* Caption - Timestamps, legends (12px • Regular • fg-muted) */
+  --text-caption-size: var(--typography-xs);
+  --text-caption-weight: var(--typography-weight-normal);
+  --text-caption-line-height: var(--typography-leading-normal);
+
+  /* Micro - Small descriptions, badges (11px • Regular • fg-muted) */
+  --text-micro-size: var(--typography-2xs);
+  --text-micro-weight: var(--typography-weight-normal);
+  --text-micro-line-height: var(--typography-leading-normal);
+}
+
+
+/**
+ * Bridge - Shadcn/UI
+ * 
+ * Maps semantic tokens to Shadcn's internal CSS variables.
+ * This ensures all Shadcn components automatically adopt the design system.
+ * 
+ * When adding new Shadcn components, check if they require additional
+ * CSS variables and add them here.
+ */
+
+:root {
+  /* ============================================
+     CORE COLORS
+     ============================================ */
+  --background: var(--neutral-0);
+  --foreground: var(--neutral-900);
+
+  /* Card */
+  --card: var(--neutral-0);
+  --card-foreground: var(--neutral-900);
+
+  /* Popover */
+  --popover: var(--neutral-200);
+  --popover-foreground: var(--neutral-900);
+
+  /* Primary */
+  --primary: var(--brand-600);
+  --primary-foreground: var(--neutral-0);
+
+  /* Secondary */
+  --secondary: var(--neutral-0);
+  --secondary-foreground: var(--neutral-950);
+
+  /* Muted */
+  --muted: var(--neutral-50);
+  --muted-foreground: var(--neutral-500);
+
+  /* Accent */
+  --accent: var(--neutral-100);
+  --accent-foreground: var(--neutral-900);
+
+  /* Destructive */
+  --destructive: var(--critical-500);
+  --destructive-foreground: var(--neutral-0);
+
+  /* Input & Border */
+  --input: var(--border-default);
+  --border: var(--neutral-200);
+
+  /* Focus Ring */
+  --ring: var(--ring-primary);
+
+  /* ============================================
+     SIDEBAR
+     ============================================ */
+  --sidebar: var(--neutral-50);
+  --sidebar-foreground: var(--neutral-900);
+  --sidebar-primary: var(--brand-600);
+  --sidebar-primary-foreground: var(--neutral-0);
+  --sidebar-accent: var(--neutral-100);
+  --sidebar-accent-foreground: var(--neutral-900);
+  --sidebar-border: var(--neutral-100);
+  --sidebar-ring: var(--brand-alpha-20);
+
+  /* ============================================
+     CHART COLORS
+     ============================================ */
+  --chart-1: var(--brand-500);
+  --chart-2: var(--info-500);
+  --chart-3: var(--warning-500);
+  --chart-4: var(--success-500);
+  --chart-5: var(--critical-500);
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+.dark {
+  /* Core */
+  --background: var(--neutral-50);
+  --foreground: var(--neutral-950);
+
+  /* Card */
+  --card: var(--neutral-100);
+  --card-foreground: var(--neutral-950);
+
+  /* Popover */
+  --popover: var(--neutral-100);
+  --popover-foreground: var(--neutral-950);
+
+  /* Primary */
+  --primary: var(--brand-500);
+  --primary-foreground: var(--neutral-0);
+
+  /* Secondary */
+  --secondary: var(--neutral-100);
+  --secondary-foreground: var(--neutral-950);
+
+  /* Muted */
+  --muted: var(--neutral-100);
+  --muted-foreground: var(--neutral-400);
+
+  /* Accent */
+  --accent: var(--neutral-200);
+  --accent-foreground: var(--neutral-950);
+
+  /* Destructive */
+  --destructive: var(--critical-500);
+  --destructive-foreground: var(--neutral-0);
+
+  /* Input & Border */
+  --input: var(--neutral-100);
+  --border: var(--neutral-200);
+
+  /* Focus Ring */
+  --ring: var(--brand-alpha-20);
+
+  /* Sidebar */
+  --sidebar: var(--neutral-0);
+  --sidebar-foreground: var(--neutral-950);
+  --sidebar-primary: var(--brand-500);
+  --sidebar-primary-foreground: var(--neutral-0);
+  --sidebar-accent: var(--neutral-200);
+  --sidebar-accent-foreground: var(--neutral-950);
+  --sidebar-border: var(--neutral-100);
+  --sidebar-ring: var(--brand-alpha-20);
+
+  /* Chart */
+  --chart-1: var(--brand-600);
+  --chart-2: var(--info-600);
+  --chart-3: var(--warning-500);
+  --chart-4: var(--success-600);
+  --chart-5: var(--critical-500);
+}

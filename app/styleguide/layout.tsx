@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { BookOpen } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { ModeToggle } from "@/components/ui/mode-toggle"
+import { ModeToggle } from "@/devcomponents/shadcn/mode-toggle"
 import { navigation } from "./navigation"
 
 export default function StyleguideLayout({
@@ -21,8 +21,8 @@ export default function StyleguideLayout({
       <aside className="fixed left-0 top-0 z-30 flex h-screen w-64 flex-col border-r border-border-muted bg-bg-canvas">
         {/* Header */}
         <div className="flex h-16 items-center justify-between border-b border-border-muted px-4">
-          <Link 
-            href="/styleguide" 
+          <Link
+            href="/styleguide"
             className="flex items-center gap-2 font-semibold text-fg-main"
           >
             <BookOpen className="size-5 text-fg-primary" />
@@ -42,7 +42,7 @@ export default function StyleguideLayout({
                 {section.links.map((link) => {
                   const isActive = pathname === link.href
                   const Icon = link.icon
-                  
+
                   return (
                     <li key={link.href}>
                       <Link

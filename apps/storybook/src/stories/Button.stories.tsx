@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@igreen/design-system';
+import { Button } from '@igreen/button';
 
 const meta = {
     title: 'Components/Button',

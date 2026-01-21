@@ -1,21 +1,23 @@
 {
-    "name": "@igreen/themes",
-    "version": "1.0.0",
-    "description": "iGreen Design System - Themes Package",
-    "main": "dist/igreen.css",
-    "files": [
-        "dist"
-    ],
-    "exports": {
-        "./igreen": "./dist/igreen.css",
-        "./bridge": "./dist/bridge.css"
-    },
-    "scripts": {
-        "build": "tsx build.ts",
-        "dev": "tsx build.ts --watch"
-    },
-    "publishConfig": {
-        "access": "public",
-        "registry": "http://localhost:4873"
-    }
+  "name": "@igreen/themes",
+  "version": "1.2.0",
+  "description": "iGreen Design System - Themes Package",
+  "main": "dist/igreen.css",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./igreen": "./dist/igreen.css",
+    "./solarorange": "./dist/solarorange.css",
+    "./bridge": "./dist/bridge.css",
+    "./dist/*": "./dist/*"
+  },
+  "scripts": {
+    "build": "tsx build.ts",
+    "dev": "tsx build.ts --watch"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
 }

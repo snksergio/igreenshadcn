@@ -1,0 +1,201 @@
+/**
+ * Semantic - Colors
+ * 
+ * Contextual color tokens that reference primitives.
+ * These provide meaning and intent to the design system.
+ * 
+ * Categories:
+ * - bg-*: Background colors
+ * - fg-*: Foreground/text colors
+ * - border-*: Border colors
+ * - ring-*: Focus ring colors
+ */
+
+:root {
+  /* ============================================
+     BACKGROUND COLORS
+     ============================================ */
+  
+  /* Base Backgrounds */
+  --bg-canvas: var(--neutral-50);
+  --bg-background: var(--neutral-0);
+  --bg-muted: var(--neutral-50);
+  --bg-accent: var(--neutral-100);
+  --bg-fill: var(--neutral-600);
+  --bg-inverse: var(--neutral-950);
+
+  /* Primary Backgrounds */
+  --bg-primary: var(--brand-600);
+  --bg-primary-hover: var(--brand-700);
+  --bg-primary-subtle: var(--brand-50);
+
+  /* Secondary Backgrounds */
+  --bg-secondary: var(--neutral-0);
+  --bg-secondary-hover: var(--neutral-50);
+  --bg-secondary-subtle: var(--neutral-0);
+
+  /* Tertiary Backgrounds */
+  --bg-tertiary: transparent;
+  --bg-tertiary-hover: var(--neutral-50);
+  --bg-tertiary-subtle: transparent;
+
+  /* Feedback Backgrounds */
+  --bg-success: var(--success-500);
+  --bg-success-hover: var(--success-600);
+  --bg-success-subtle: var(--success-50);
+  --bg-success-muted: var(--success-50);
+
+  --bg-warning: var(--warning-500);
+  --bg-warning-hover: var(--warning-600);
+  --bg-warning-subtle: var(--warning-50);
+  --bg-warning-muted: var(--warning-50);
+
+  --bg-critical: var(--critical-500);
+  --bg-critical-hover: var(--critical-600);
+  --bg-critical-subtle: var(--critical-50);
+  --bg-critical-muted: var(--critical-50);
+
+  --bg-info: var(--info-500);
+  --bg-info-hover: var(--info-600);
+  --bg-info-subtle: var(--info-50);
+  --bg-info-muted: var(--info-50);
+
+  /* ============================================
+     FOREGROUND COLORS (Text)
+     ============================================ */
+  
+  /* Base Text Colors */
+  --fg-main: var(--neutral-700);
+  --fg-subtle: var(--neutral-400);
+  --fg-muted: var(--neutral-500);
+  --fg-moderate: var(--neutral-800);
+  --fg-strong: var(--neutral-950);
+
+  /* Primary Text Colors */
+  --fg-primary: var(--brand-600);
+  --fg-on-primary: var(--neutral-0);
+
+  /* Secondary Text Colors */
+  --fg-secondary: var(--neutral-950);
+  --fg-on-secondary: var(--neutral-950);
+
+  /* Tertiary Text Colors */
+  --fg-tertiary: var(--neutral-800);
+  --fg-on-tertiary: var(--neutral-800);
+
+  /* Interactive Text Colors */
+  --fg-interactive: var(--brand-600);
+  --fg-on-inverted: var(--neutral-0);
+  --fg-muted-on-inverted: var(--neutral-300);
+
+  /* Feedback Text Colors */
+  --fg-success: var(--success-500);
+  --fg-on-success: var(--neutral-0);
+
+  --fg-warning: var(--warning-500);
+  --fg-on-warning: var(--neutral-0);
+
+  --fg-critical: var(--critical-500);
+  --fg-on-critical: var(--neutral-0);
+
+  --fg-info: var(--info-500);
+  --fg-on-info: var(--neutral-0);
+
+  /* ============================================
+     BORDER COLORS
+     ============================================ */
+  
+  /* Base Borders */
+  --border-default: var(--neutral-200);
+  --border-muted: var(--neutral-100);
+  --border-strong: var(--neutral-300);
+
+  /* Semantic Borders */
+  --border-primary: var(--brand-600);
+  --border-secondary: var(--neutral-200);
+  --border-inverted: var(--neutral-950);
+
+  /* Feedback Borders */
+  --border-success: var(--success-500);
+  --border-warning: var(--warning-500);
+  --border-critical: var(--critical-500);
+  --border-info: var(--info-500);
+
+  /* ============================================
+     RING COLORS (Focus States)
+     ============================================ */
+  --ring-primary: var(--brand-alpha-50);
+  --ring-secondary: var(--neutral-alpha-20);
+  --ring-success: var(--success-alpha-20);
+  --ring-warning: var(--warning-alpha-20);
+  --ring-critical: var(--critical-alpha-20);
+  --ring-info: var(--info-alpha-20);
+}
+
+/* ============================================
+   DARK MODE OVERRIDES
+   ============================================ */
+.dark {
+  /* Base Backgrounds - Inverted */
+  --bg-canvas: var(--neutral-0);
+  --bg-background: var(--neutral-50);
+  --bg-muted: var(--neutral-100);
+  --bg-accent: var(--neutral-200);
+  --bg-fill: var(--neutral-500);
+  --bg-inverse: var(--neutral-950);
+
+  /* Primary Backgrounds - Use lighter brand tones */
+  --bg-primary: var(--brand-500);
+  --bg-primary-hover: var(--brand-600);
+  --bg-primary-subtle: var(--brand-50);
+
+  /* Secondary Backgrounds */
+  --bg-secondary: var(--neutral-100);
+  --bg-secondary-hover: var(--neutral-200);
+  --bg-secondary-subtle: var(--neutral-50);
+
+  /* Tertiary Backgrounds */
+  --bg-tertiary: transparent;
+  --bg-tertiary-hover: var(--neutral-100);
+  --bg-tertiary-subtle: transparent;
+
+  /* Base Text Colors - Inverted for readability */
+  --fg-main: var(--neutral-950);
+  --fg-subtle: var(--neutral-500);
+  --fg-muted: var(--neutral-400);
+  --fg-moderate: var(--neutral-700);
+  --fg-strong: var(--neutral-950);
+
+  /* Primary Text Colors */
+  --fg-primary: var(--brand-600);
+  --fg-on-primary: var(--neutral-0);
+
+  /* Secondary Text Colors */
+  --fg-secondary: var(--neutral-800);
+  --fg-on-secondary: var(--neutral-950);
+
+  /* Tertiary Text Colors */
+  --fg-tertiary: var(--neutral-600);
+  --fg-on-tertiary: var(--neutral-800);
+
+  /* Interactive Text Colors */
+  --fg-interactive: var(--brand-600);
+  --fg-on-inverted: var(--neutral-0);
+  --fg-muted-on-inverted: var(--neutral-400);
+
+  /* Feedback Text Colors - Brighter variants */
+  --fg-success: var(--success-600);
+  --fg-warning: var(--warning-500);
+  --fg-critical: var(--critical-500);
+  --fg-info: var(--info-500);
+
+  /* Base Borders - Subtle in dark mode */
+  --border-default: var(--neutral-200);
+  --border-muted: var(--neutral-100);
+  --border-strong: var(--neutral-300);
+
+  /* Semantic Borders */
+  --border-primary: var(--brand-500);
+  --border-secondary: var(--neutral-200);
+  --border-inverted: var(--neutral-950);
+}

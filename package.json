@@ -8,12 +8,18 @@
     "apps/*"
   ],
   "scripts": {
+    "dev": "next dev",
     "build:all": "npm run build:themes && npm run build:components",
     "build:themes": "cd packages/themes && npm run build",
+    "build:all-components": "tsx scripts/build-all-components.ts",
     "build:components": "tsx scripts/build-all-components.ts",
+    "setup-component": "tsx scripts/setup-new-component.ts",
+    "sync": "tsx scripts/sync-to-packages.ts",
     "create-component-package": "tsx scripts/create-component-package.ts",
     "version-component": "tsx scripts/version-component.ts",
     "publish-component": "tsx scripts/publish-component.ts",
+    "publish:all": "tsx scripts/publish-all.ts",
+    "update-registry": "tsx scripts/update-registry.ts",
     "storybook": "cd apps/storybook && npm run storybook",
     "registry:start": "npx verdaccio@5 --config ./verdaccio.yaml",
     "registry:clean": "npx rimraf node_modules/.verdaccio",
@@ -28,5 +34,8 @@
     "eslint": "^9",
     "tsx": "^4.21.0",
     "typescript": "^5"
+  },
+  "dependencies": {
+    "@igreen/design-system": "^1.0.5"
   }
 }

@@ -1,0 +1,10 @@
+/**
+ * Primitives - Index
+ * 
+ * Entry point for all primitive tokens.
+ * Import order matters for CSS variable resolution.
+ */
+
+@import "./colors.css";
+@import "./typography.css";
+@import "./spacing.css";

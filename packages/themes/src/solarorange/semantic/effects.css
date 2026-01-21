@@ -1,0 +1,150 @@
+/**
+ * Semantic - Effects
+ * 
+ * Visual effects, elevation, overlays, and utility tokens.
+ * 
+ * Categories:
+ * - Elevation: Surface levels with associated shadows
+ * - Backdrop: Overlay backgrounds for modals/dialogs
+ * - Icons: Standard icon sizes
+ * - Z-index: Layering scale
+ * - Visual Effects: Shine, gradients
+ */
+
+:root {
+  /* ============================================
+     ELEVATION SYSTEM
+     Surface levels with background + shadow pairs
+     ============================================ */
+  
+  /* Level 0: Base surface (no elevation) */
+  --bg-elevated-0: var(--neutral-0);
+  --shadow-elevated-0: none;
+
+  /* Level 1: Slight elevation (cards, dropdowns) */
+  --bg-elevated-1: var(--neutral-0);
+  --shadow-elevated-1: 0 1px 2px 0 oklch(from var(--neutral-700) l c h / 0.05);
+
+  /* Level 2: Medium elevation (popovers, menus) */
+  --bg-elevated-2: var(--neutral-0);
+  --shadow-elevated-2: 
+    0 1px 3px 0 oklch(from var(--neutral-700) l c h / 0.1),
+    0 1px 2px -1px oklch(from var(--neutral-700) l c h / 0.1);
+
+  /* Level 3: High elevation (modals, dialogs) */
+  --bg-elevated-3: var(--neutral-0);
+  --shadow-elevated-3: 
+    0 4px 6px -1px oklch(from var(--neutral-700) l c h / 0.1),
+    0 2px 4px -2px oklch(from var(--neutral-700) l c h / 0.1);
+
+  /* Level 4: Highest elevation (notifications, toasts) */
+  --bg-elevated-4: var(--neutral-0);
+  --shadow-elevated-4: 
+    0 10px 15px -3px oklch(from var(--neutral-700) l c h / 0.1),
+    0 4px 6px -4px oklch(from var(--neutral-700) l c h / 0.1);
+
+  /* ============================================
+     BACKDROP / OVERLAY
+     For modals, dialogs, drawers
+     ============================================ */
+  --backdrop-default: oklch(0 0 0 / 0.5);
+  --backdrop-light: oklch(0 0 0 / 0.3);
+  --backdrop-dark: oklch(0 0 0 / 0.7);
+  --backdrop-blur: oklch(0 0 0 / 0.3);
+
+  /* ============================================
+     ICON SIZES
+     Consistent icon sizing across components
+     ============================================ */
+  --icon-2xs: 0.625rem;   /* 10px */
+  --icon-xs: 0.75rem;     /* 12px */
+  --icon-sm: 1rem;        /* 16px */
+  --icon-md: 1.25rem;     /* 20px */
+  --icon-lg: 1.5rem;      /* 24px */
+  --icon-xl: 2rem;        /* 32px */
+  --icon-2xl: 2.5rem;     /* 40px */
+
+  /* ============================================
+     Z-INDEX SCALE
+     Layering system for overlays and components
+     ============================================ */
+  --z-base: 0;
+  --z-docked: 10;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* ============================================
+     VISUAL EFFECTS
+     Shine, gradients, and decorative effects
+     ============================================ */
+  
+  /* Inset Shine Effect (inner glow for buttons) */
+  --shadow-inset-shine: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+  --shadow-inset-shine-pressed: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+
+  /* Gradient Shine Effect (top highlight) */
+  --gradient-shine: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%);
+
+  /* ============================================
+     FOCUS RING
+     Padrão de foco para todos os componentes
+     
+     Classes geradas automaticamente pelo @theme em app/globals.css:
+     - ring-focus, ring-focus-sm, ring-focus-lg (para ring)
+     - outline-focus (para outline)
+     
+     Usage:
+     - Botões: outline-focus outline-transparent focus-visible:outline-focus focus-visible:outline-ring/50
+     - Inputs/Checkboxes: focus-visible:ring-focus focus-visible:ring-ring/50
+     ============================================ */
+  
+  /* Largura do ring */
+  --ring-focus-width: 3px;
+  --ring-focus-width-sm: 2px;
+  --ring-focus-width-lg: 4px;
+
+  /* Offset (espaçamento do elemento) */
+  --ring-focus-offset: 2px;
+  --ring-focus-offset-none: 0px;
+
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  --radius: 0.625rem;
+}
+
+
+/* ============================================
+   DARK MODE OVERRIDES
+   ============================================ */
+.dark {
+  /* Elevation backgrounds adjusted for dark mode */
+  --bg-elevated-0: var(--neutral-50);
+  --bg-elevated-1: var(--neutral-100);
+  --bg-elevated-2: var(--neutral-100);
+  --bg-elevated-3: var(--neutral-200);
+  --bg-elevated-4: var(--neutral-200);
+
+  /* Shadows lighter in dark mode */
+  --shadow-elevated-1: 0 1px 2px 0 oklch(0 0 0 / 0.3);
+  --shadow-elevated-2: 
+    0 1px 3px 0 oklch(0 0 0 / 0.4),
+    0 1px 2px -1px oklch(0 0 0 / 0.3);
+  --shadow-elevated-3: 
+    0 4px 6px -1px oklch(0 0 0 / 0.4),
+    0 2px 4px -2px oklch(0 0 0 / 0.3);
+  --shadow-elevated-4: 
+    0 10px 15px -3px oklch(0 0 0 / 0.4),
+    0 4px 6px -4px oklch(0 0 0 / 0.3);
+
+  /* Backdrop slightly lighter in dark mode */
+  --backdrop-default: oklch(0 0 0 / 0.6);
+  --backdrop-light: oklch(0 0 0 / 0.4);
+  --backdrop-dark: oklch(0 0 0 / 0.8);
+}

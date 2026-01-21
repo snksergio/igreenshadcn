@@ -1,0 +1,58 @@
+/**
+ * Semantic - Sizing
+ * 
+ * Form control heights and component sizing tokens.
+ * These provide semantic names while maintaining compatibility with Tailwind.
+ * 
+ * Usage:
+ * - Shadcn components: use h-8, h-9, h-10... (native Tailwind)
+ * - Custom components: use h-formcontrol-sm, h-formcontrol-md... (semantic)
+ * 
+ * Both resolve to the same calculated values.
+ */
+
+:root {
+  /* ============================================
+     FORM CONTROL HEIGHTS
+     
+     Semantic tokens that reference the spacing system.
+     Use in custom components for clarity and maintainability.
+     
+     ┌─────────────────┬─────────────┬────────────┬────────┐
+     │ Token           │ Tailwind    │ Multiplier │ Pixels │
+     ├─────────────────┼─────────────┼────────────┼────────┤
+     │ --h-formcontrol-sm  │ h-8     │ × 8        │ 32px   │
+     │ --h-formcontrol-md  │ h-9     │ × 9        │ 36px   │
+     │ --h-formcontrol-lg  │ h-10    │ × 10       │ 40px   │
+     │ --h-formcontrol-xl  │ h-11    │ × 11       │ 44px   │
+     │ --h-formcontrol-2xl │ h-12    │ × 12       │ 48px   │
+     └─────────────────┴─────────────┴────────────┴────────┘
+     
+     To customize:
+     - Change multiplier to shift all sizes proportionally
+     - Or change --spacing to affect all spacing globally
+     ============================================ */
+  
+  /* Small - Compact controls, toolbars */
+  --h-formcontrol-sm: calc(var(--spacing) * 8);   /* 32px = h-8 */
+  
+  /* Medium - Default size for most inputs */
+  --h-formcontrol-md: calc(var(--spacing) * 9);   /* 36px = h-9 */
+  
+  /* Large - Prominent inputs, touch-friendly */
+  --h-formcontrol-lg: calc(var(--spacing) * 10);  /* 40px = h-10 */
+  
+  /* Extra Large - Hero sections, feature inputs */
+  --h-formcontrol-xl: calc(var(--spacing) * 11);  /* 44px = h-11 */
+  
+  /* 2X Large - Maximum size, landing pages */
+  --h-formcontrol-2xl: calc(var(--spacing) * 12); /* 48px = h-12 */
+
+  /* ============================================
+     FORM CONTROL TEXT SIZE
+     
+     Semantic token for text inside form controls.
+     References the proportional typography system.
+     ============================================ */
+  --text-formcontrol: var(--typography-sm); /* 14px - matches text-sm */
+}
